@@ -183,7 +183,7 @@ export function WhyGofaGuy() {
                   </div>
 
                   {/* Top Badge */}
-                  <motion.div variants={fadeInUp} className="mb-8">
+                  <motion.div variants={fadeInUp} className="mb-8 text-white">
                     <Badge
                       className={`bg-gradient-to-r ${benefit.badgeGradient} ${benefit.accentColor} border-0 px-4 py-2 text-sm font-semibold shadow-lg hover:shadow-xl transition-all duration-300 text-whit`}
                     >
