@@ -75,11 +75,11 @@ export function About() {
         </motion.div>
 
         {/* Stats */}
-        <div className="flex flex-col sm:flex-row justify-between gap-6 md:gap-8 md:w-auto px-6">
+        <div className="flex flex-col sm:flex-row justify-between mt-20 gap-6 md:gap-8 md:w-auto px-6">
           {stats.map((stat, idx) => (
             <motion.div
               key={stat.label}
-              className="bg-white/10 h-[120px] mt-20 rounded-lg p-6 flex flex-col items-center text-center shadow-lg"
+              className="bg-white/10 h-[120px] rounded-lg p-6 flex flex-col items-center text-center shadow-lg"
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: idx * 0.15 }}
