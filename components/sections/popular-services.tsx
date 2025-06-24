@@ -278,7 +278,7 @@ export function PopularServices() {
         >
           <FeatureCard
             title="Inclusive App"
-            description="Switch your app to the language you're most comfortable with."
+            description="Everyone can use GofaGuy, Post errands or run them for cash."
             icon={Globe}
           />
           <FeatureCard

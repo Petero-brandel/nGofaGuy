@@ -55,8 +55,8 @@ export function About() {
           <motion.button
             className="bg-transparent border-2 py-2 px-6 mt-6 md:mt-8 rounded-lg hover:text-white transition-colors duration-200 w-max"
             style={{
-              borderColor: colors.primary,
-              color: colors.primary,
+              borderColor: '#1FF3A5',
+              color: '#1FF3A5',
               backgroundColor: "transparent"
             }}
             initial={{ opacity: 0, scale: 0.95 }}
@@ -65,8 +65,8 @@ export function About() {
             viewport={{ once: true }}
             whileHover={{
               scale: 1.08,
-              backgroundColor: colors.primary,
-              color: "white"
+              backgroundColor: '#1FF3A5',
+              color: "#1FF3A5"
             }}
             whileTap={{ scale: 0.97 }}
           >
@@ -75,15 +75,11 @@ export function About() {
         </motion.div>
 
         {/* Stats */}
-        <div className="flex flex-col sm:flex-row justify-between gap-6 md:gap-8 w-full md:w-auto px-6">
+        <div className="flex flex-col sm:flex-row justify-between gap-6 md:gap-8 md:w-auto px-6">
           {stats.map((stat, idx) => (
             <motion.div
               key={stat.label}
-              className="flex-1 rounded-xl backdrop-blur-md shadow-md p-6 flex flex-col items-center min-w-[150px] transition-transform duration-200 hover:scale-105 border-t-4"
-              style={{
-                backgroundColor: "white",
-                borderTopColor: colors.primary,
-              }}
+              className="bg-white/10 h-[120px] mt-20 rounded-lg p-6 flex flex-col items-center text-center shadow-lg"
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: idx * 0.15 }}
@@ -91,13 +87,13 @@ export function About() {
             >
               <span
                 className="font-extrabold text-3xl md:text-4xl"
-                style={{ color: colors.primary }}
+                style={{ color: '#fff '}}
               >
                 {stat.number}
               </span>
               <span
                 className="text-base md:text-lg mt-2 text-center"
-                style={{ color: colors.secondary }}
+                style={{ color: '#1FF3A5' }}
               >
                 {stat.label}
               </span>

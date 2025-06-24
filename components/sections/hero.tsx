@@ -98,7 +98,7 @@ export function Hero() {
             variants={container}
             className="lg:col-span-7 flex flex-col space-y-6 text-center lg:text-left order-1"
           >
-            {/* Improved Badge */}
+          
             <motion.div variants={item} className="flex justify-center lg:justify-start">
               <div className="inline-flex items-center gap-2 bg-gradient-to-r from-primary/8 to-purple-500/8 text-primary px-5 py-2.5 rounded-full text-sm font-semibold border border-primary/15 backdrop-blur-sm shadow-lg">
                 <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
@@ -106,7 +106,7 @@ export function Hero() {
               </div>
             </motion.div>
 
-            {/* Enhanced Main Headline */}
+           
             <motion.div variants={item} className="space-y-4">
               <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight text-gray-900 leading-tight font-montserrat">
                 Focus on what
