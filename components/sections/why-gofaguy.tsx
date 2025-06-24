@@ -261,25 +261,25 @@ export function WhyGofaGuy() {
           <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-gray-100/50 max-w-4xl mx-auto">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
               <div className="space-y-2">
-                <div className={`text-3xl font-bold text-primary bg-clip-text text-transparent`}>
+                <div className='text-3xl font-bold text-primary'>
                   50k+
                 </div>
                 <div className="text-sm text-gray-600 font-medium">Active Students</div>
               </div>
               <div className="space-y-2">
-                <div className={`text-3xl font-bold text-primary bg-clip-text text-transparent`}>
+                <div className='text-3xl font-bold text-primary'>
                   99.8%
                 </div>
                 <div className="text-sm text-gray-600 font-medium">Satisfaction Rate</div>
               </div>
               <div className="space-y-2">
-                <div className={`text-3xl font-bold text-primary bg-clip-text text-transparent`}>
+                <div className='text-3xl font-bold text-primary'>
                   24/7
                 </div>
                 <div className="text-sm text-gray-600 font-medium">Support Available</div>
               </div>
               <div className="space-y-2">
-                <div className={`text-3xl font-bold text-primary bg-clip-text text-transparent`}>
+                <div className='text-3xl font-bold text-primary'>
                   15s
                 </div>
                 <div className="text-sm text-gray-600 font-medium">Avg Response Time</div>
