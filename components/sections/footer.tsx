@@ -88,10 +88,10 @@ export function Footer() {
             {/* Logo */}
           <Link href="/" className="flex items-center space-x-2 group">
             <Image
-              src="/logo-white.svg"
+              src="/logo-blue-white.svg"
               alt="GofaGuy Logo"
               width={150}  
-              height={60}
+              height={150}
             />
           </Link>
 

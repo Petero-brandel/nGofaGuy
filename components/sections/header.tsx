@@ -21,7 +21,7 @@ export function Header() {
               src="/logo.svg"
               alt="GofaGuy Logo"
               width={150}  
-              height={60}
+              height={150}
             />
           </Link>
 
