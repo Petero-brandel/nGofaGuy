@@ -54,17 +54,21 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${inter.variable} ${montserrat.variable}`}>
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </head>
       <body className="bg-white text-gray-900 font-inter antialiased">{children}</body>
     </html>
   )
 }
 
-export const dynamic = "force-dynamic" // Ensure dynamic rendering for SEO
-export const revalidate = 60 // Revalidate every 60 seconds for fresh content
-export const fetchCache = "force-no-store" // Disable caching for fresh data
-export const runtime = "edge" // Use Edge runtime for better performance
-export const preferredRegion = "auto" // Automatically select the best region for deployment
-export const dynamicParams = false // Disable dynamic params for static generation
-export const fetchCacheKey = "gofaguy-layout" // Custom cache key for layout
-export const fetchCacheTtl = 60 // Time to live for cache in seconds
-export const fetchCacheMaxAge = 60 // Maximum age for cache in seconds
+// Runtime and cache settings
+export const dynamic = "force-dynamic"
+export const revalidate = 60
+export const fetchCache = "force-no-store"
+export const runtime = "edge"
+export const preferredRegion = "auto"
+export const dynamicParams = false
+export const fetchCacheKey = "gofaguy-layout"
+export const fetchCacheTtl = 60
+export const fetchCacheMaxAge = 60
