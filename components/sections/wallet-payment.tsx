@@ -41,7 +41,7 @@ export function WalletPayment() {
           >
            Robust In-App
             <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-purple-600 to-primary">
+            <span className="text-primary">
               Wallet System
             </span>
           </motion.h2>
@@ -63,7 +63,7 @@ export function WalletPayment() {
         >
           {/* Faster Payments Card */}
           <motion.div variants={item} className="relative">
-            <div className="bg-gradient-to-br shadow-lg from-purple-600 via-purple-700 to-indigo-800 rounded-3xl p-8 h-full text-white relative overflow-hidden">
+            <div className="bg-primary rounded-3xl p-8 h-full text-white relative overflow-hidden">
               {/* Background Decorative Elements */}
               <div className="absolute top-0 right-0 w-32 h-32 bg-blue-400/20 rounded-full blur-2xl" />
               <div className="absolute bottom-0 left-0 w-24 h-24 bg-purple-400/30 rounded-full blur-xl" />

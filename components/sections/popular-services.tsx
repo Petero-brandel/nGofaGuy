@@ -19,6 +19,24 @@ import {
   PieChart,
 } from "lucide-react"
 
+// Brand color classes (using Tailwind with custom colors or inline style as fallback)
+const brand = {
+  primary: "bg-[#1657FD] text-[#1657FD] border-[#1657FD]",
+  primaryText: "text-[#1657FD]",
+  primaryBg: "bg-[#1657FD]",
+  primaryBorder: "border-[#1657FD]",
+  primaryGradient: "bg-gradient-to-br from-[#1657FD] to-[#0033CD]",
+  accent: "text-[#1FF3A5] bg-[#1FF3A5] border-[#1FF3A5]",
+  accentText: "text-[#1FF3A5]",
+  accentBg: "bg-[#1FF3A5]",
+  accentBorder: "border-[#1FF3A5]",
+  secondary: "bg-[#0033CD] text-[#0033CD] border-[#0033CD]",
+  secondaryText: "text-[#0033CD]",
+  secondaryBg: "bg-[#0033CD]",
+  secondaryBorder: "border-[#0033CD]",
+  dark: "bg-[#010411] text-[#010411] border-[#010411]",
+}
+
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
   animate: { opacity: 1, y: 0 },
@@ -53,43 +71,52 @@ export function PopularServices() {
       icon: Coffee,
       label: "Food & Drinks",
       description: "Meals, snacks & beverages delivered fresh to your dorm or study spot",
-      gradient: "from-blue-500 to-indigo-600",
-      bgColor: "bg-gradient-to-br from-blue-50 to-indigo-50",
-      iconBg: "bg-gradient-to-br from-blue-500 to-indigo-600",
-      borderColor: "border-blue-100",
+      gradient: brand.primaryGradient,
+      bgColor: "bg-[#F5F8FF]", // subtle blue-tinted background
+      iconBg: brand.primaryGradient,
+      borderColor: brand.primaryBorder,
       popularity: "92%",
       count: "3.1k",
       trend: "+15%",
       avgTime: "12min",
       isPopular: true,
+      button: brand.primaryGradient,
+      buttonText: "text-white",
+      trendColor: brand.accentText,
     },
     {
       icon: Package,
       label: "Delivery",
       description: "Packages, documents, and parcels delivered safely across campus",
-      gradient: "from-teal-500 to-emerald-600",
-      bgColor: "bg-gradient-to-br from-teal-50 to-emerald-50",
-      iconBg: "bg-gradient-to-br from-teal-500 to-emerald-600",
-      borderColor: "border-teal-100",
+      gradient: brand.secondaryBg,
+      bgColor: "bg-[#F5F8FF]",
+      iconBg: brand.secondaryBg,
+      borderColor: brand.secondaryBorder,
       popularity: "95%",
       count: "2.8k",
       trend: "+22%",
       avgTime: "8min",
       isPopular: true,
+      button: brand.secondaryBg,
+      buttonText: "text-white",
+      trendColor: brand.accentText,
     },
     {
       icon: Utensils,
       label: "Groceries",
       description: "Shopping for essentials, snacks, and daily necessities made easy",
-      gradient: "from-purple-500 to-violet-600",
-      bgColor: "bg-gradient-to-br from-purple-50 to-violet-50",
-      iconBg: "bg-gradient-to-br from-purple-500 to-violet-600",
-      borderColor: "border-purple-100",
+      gradient: brand.accentBg,
+      bgColor: "bg-[#F5FFF9]",
+      iconBg: brand.accentBg,
+      borderColor: brand.accentBorder,
       popularity: "88%",
       count: "2.2k",
       trend: "+18%",
       avgTime: "25min",
       isPopular: false,
+      button: brand.accentBg,
+      buttonText: "text-[#010411]",
+      trendColor: brand.accentText,
     },
   ]
 
@@ -99,7 +126,7 @@ export function PopularServices() {
 
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % services.length)
-    }, 5000) // 5 seconds per slide
+    }, 5000)
 
     return () => clearInterval(interval)
   }, [isPlaying, services.length])
@@ -116,20 +143,34 @@ export function PopularServices() {
     setCurrentIndex(index)
   }
 
-  const FeatureCard = ({ title, description, icon: Icon }: { title: string; description: string; icon: any }) => (
-    <motion.div 
+  const FeatureCard = ({
+    title,
+    description,
+    icon: Icon,
+  }: {
+    title: string
+    description: string
+    icon: any
+  }) => (
+    <motion.div
       whileHover={{ y: -5 }}
       className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-all border border-gray-100"
     >
-      <div className="w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center mb-4">
-        <Icon className="w-6 h-6 text-blue-600" />
+      <div className={`w-12 h-12 rounded-xl ${brand.primaryBg} flex items-center justify-center mb-4`}>
+        <Icon className="w-6 h-6 text-white" />
       </div>
       <h3 className="text-xl font-semibold text-gray-900 mb-2">{title}</h3>
       <p className="text-gray-600">{description}</p>
     </motion.div>
   )
 
-  const ServiceCard = ({ service, isActive }: { service: (typeof services)[0]; isActive: boolean }) => (
+  const ServiceCard = ({
+    service,
+    isActive,
+  }: {
+    service: (typeof services)[0]
+    isActive: boolean
+  }) => (
     <motion.div
       className={`flex-shrink-0 w-full max-w-md mx-auto transition-all duration-500 ${
         isActive ? "opacity-100 scale-100" : "opacity-60 scale-95"
@@ -167,15 +208,15 @@ export function PopularServices() {
               {/* Stats Grid */}
               <div className="grid grid-cols-3 gap-3">
                 <div className="text-center bg-white/80 rounded-lg p-2 border border-gray-100">
-                  <div className="text-lg font-bold text-gray-900">{service.popularity}</div>
+                  <div className={`text-lg font-bold ${brand.primaryText}`}>{service.popularity}</div>
                   <div className="text-xs text-gray-500">Success</div>
                 </div>
                 <div className="text-center bg-white/80 rounded-lg p-2 border border-gray-100">
-                  <div className="text-lg font-bold text-green-600">{service.trend}</div>
+                  <div className={`text-lg font-bold ${service.trendColor}`}>{service.trend}</div>
                   <div className="text-xs text-gray-500">Growth</div>
                 </div>
                 <div className="text-center bg-white/80 rounded-lg p-2 border border-gray-100">
-                  <div className="text-lg font-bold text-blue-600">{service.avgTime}</div>
+                  <div className={`text-lg font-bold ${brand.primaryText}`}>{service.avgTime}</div>
                   <div className="text-xs text-gray-500">Avg Time</div>
                 </div>
               </div>
@@ -185,7 +226,7 @@ export function PopularServices() {
             <motion.button
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className={`mt-6 w-full bg-gradient-to-r ${service.gradient} text-white py-3 px-4 rounded-xl font-semibold text-sm shadow-sm hover:shadow-md transition-all flex items-center justify-center gap-2`}
+              className={`mt-6 w-full ${service.button} ${service.buttonText} py-3 px-4 rounded-xl font-semibold text-sm shadow-sm hover:shadow-md transition-all flex items-center justify-center gap-2`}
             >
               <span>Browse {service.label}</span>
               <ArrowRight className="w-4 h-4" />
@@ -197,10 +238,7 @@ export function PopularServices() {
   )
 
   return (
-    <section
-      id="services"
-      className="relative py-16 overflow-hidden bg-gray-50"
-    >
+    <section id="services" className="relative py-16 overflow-hidden bg-gray-50">
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
@@ -212,7 +250,7 @@ export function PopularServices() {
         >
           <motion.h2
             variants={fadeInUp}
-            className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4"
+            className={`text-3xl sm:text-4xl font-bold text-gray-900 mb-4`}
           >
             More than just services
           </motion.h2>
@@ -223,7 +261,7 @@ export function PopularServices() {
         </motion.div>
 
         {/* Features Grid */}
-        <motion.div 
+        <motion.div
           className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12"
           initial="initial"
           whileInView="animate"
@@ -233,20 +271,20 @@ export function PopularServices() {
             animate: {
               opacity: 1,
               transition: {
-                staggerChildren: 0.1
-              }
-            }
+                staggerChildren: 0.1,
+              },
+            },
           }}
         >
-          <FeatureCard 
-            title="Inclusive App" 
-            description="Switch your app to the language you're most comfortable with." 
-            icon={Globe} 
+          <FeatureCard
+            title="Inclusive App"
+            description="Switch your app to the language you're most comfortable with."
+            icon={Globe}
           />
-          <FeatureCard 
-            title="Expense Management" 
-            description="Track your expenses to better understand your spending habits." 
-            icon={PieChart} 
+          <FeatureCard
+            title="Expense Management"
+            description="Track your expenses to better understand your spending habits."
+            icon={PieChart}
           />
         </motion.div>
 
@@ -275,7 +313,7 @@ export function PopularServices() {
             onClick={prevSlide}
             className="absolute left-0 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-sm border border-gray-200 hover:bg-gray-50 transition-all duration-200 z-10"
           >
-            <ChevronLeft className="w-5 h-5 text-gray-700" />
+            <ChevronLeft className={`w-5 h-5 ${brand.primaryText}`} />
           </motion.button>
 
           <motion.button
@@ -284,7 +322,7 @@ export function PopularServices() {
             onClick={nextSlide}
             className="absolute right-0 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-sm border border-gray-200 hover:bg-gray-50 transition-all duration-200 z-10"
           >
-            <ChevronRight className="w-5 h-5 text-gray-700" />
+            <ChevronRight className={`w-5 h-5 ${brand.primaryText}`} />
           </motion.button>
         </div>
 
@@ -299,9 +337,9 @@ export function PopularServices() {
                 onClick={() => goToSlide(index)}
                 className={`transition-all duration-300 ${
                   index === currentIndex
-                    ? "w-6 h-2 bg-blue-600 rounded-full"
-                    : "w-2 h-2 bg-gray-300 rounded-full hover:bg-gray-400"
-                }`}
+                    ? "w-6 h-2 rounded-full"
+                    : "w-2 h-2 rounded-full hover:bg-gray-400"
+                } ${index === currentIndex ? brand.primaryBg : "bg-gray-300"}`}
               />
             ))}
           </div>
@@ -312,7 +350,7 @@ export function PopularServices() {
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-xl font-semibold text-sm shadow-sm hover:shadow-md transition-all duration-300"
+            className={`inline-flex items-center gap-2 ${brand.primaryBg} hover:bg-[#0033CD] text-white px-8 py-3 rounded-xl font-semibold text-sm shadow-sm hover:shadow-md transition-all duration-300`}
           >
             <span>Explore All Services</span>
             <ArrowRight className="w-4 h-4" />

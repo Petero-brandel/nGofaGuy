@@ -1,6 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
+import Image from "next/image"
 
 const container = {
   hidden: { opacity: 0 },
@@ -110,7 +111,7 @@ export function Hero() {
               <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight text-gray-900 leading-tight font-montserrat">
                 Focus on what
                 <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-purple-600 to-primary">
+                <span>
                   matters most
                 </span>
               </h1>
@@ -169,7 +170,7 @@ export function Hero() {
                   </motion.div>
 
                   {/* Enhanced +2k indicator */}
-                  <div className="w-11 h-11 rounded-full bg-primary border-3 border-white flex items-center justify-center text-white text-xs font-semibold shadow-lg">
+                  <div className="w-11 h-11 rounded-full bg-[#010411] border-3 border-white flex items-center justify-center text-white text-xs font-semibold shadow-lg">
                     +2k
                   </div>
                 </div>
@@ -288,7 +289,7 @@ export function Hero() {
                 transition={{ duration: 4, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
                 className="absolute -top-6 -left-6 w-20 h-20 bg-gradient-to-br from-primary/15 to-purple-500/10 rounded-3xl backdrop-blur-sm border border-white/20 flex items-center justify-center shadow-xl"
               >
-                <span className="text-3xl">⚡</span>
+                <span className="text-3xl"></span>
               </motion.div>
 
               <motion.div
@@ -296,7 +297,7 @@ export function Hero() {
                 transition={{ duration: 5, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 1 }}
                 className="absolute -bottom-6 -right-6 w-18 h-18 bg-gradient-to-br from-accent-green/15 to-accent-yellow/10 rounded-2xl backdrop-blur-sm border border-white/20 flex items-center justify-center shadow-xl"
               >
-                <span className="text-2xl">🎯</span>
+                <span className="text-2xl"></span>
               </motion.div>
 
               <motion.div
@@ -304,7 +305,7 @@ export function Hero() {
                 transition={{ duration: 6, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 2 }}
                 className="absolute top-1/2 -left-8 w-12 h-12 bg-gradient-to-br from-cyan-400/10 to-blue-300/8 rounded-full backdrop-blur-sm border border-white/15 flex items-center justify-center shadow-lg"
               >
-                <span className="text-lg">✨</span>
+                <span className="text-lg"></span>
               </motion.div>
 
               <motion.div
@@ -312,90 +313,19 @@ export function Hero() {
                 transition={{ duration: 7, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 3 }}
                 className="absolute top-1/4 -right-8 w-14 h-14 bg-gradient-to-br from-pink-400/10 to-purple-300/8 rounded-xl backdrop-blur-sm border border-white/15 flex items-center justify-center shadow-lg"
               >
-                <span className="text-xl">🚀</span>
+                <span className="text-xl"></span>
               </motion.div>
-
-              {/* Enhanced Phone Mockup */}
-              <motion.div
-                whileHover={{ scale: 1.02 }}
-                transition={{ duration: 0.3 }}
-                className="relative z-10 w-[260px] h-[520px] bg-gradient-to-b from-gray-800 to-gray-900 rounded-[2.5rem] p-2 shadow-2xl"
-              >
-                <div className="w-full h-full bg-white rounded-[2rem] overflow-hidden relative">
-                  {/* Enhanced Status Bar */}
-                  <div className="flex justify-between items-center px-6 pt-3 pb-2 bg-gray-50">
-                    <div className="text-sm font-semibold text-gray-900">9:41</div>
-                    <div className="flex items-center gap-1">
-                      <div className="flex gap-1">
-                        <div className="w-3 h-2 bg-gray-900 rounded-sm" />
-                        <div className="w-3 h-2 bg-gray-900 rounded-sm" />
-                        <div className="w-3 h-2 bg-gray-900 rounded-sm" />
-                      </div>
-                      <div className="w-5 h-3 border border-gray-900 rounded-sm">
-                        <div className="w-3 h-1.5 bg-green-500 rounded-sm m-0.5" />
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Enhanced App Content */}
-                  <div className="px-6 py-6 flex flex-col items-center text-center space-y-6">
-                    {/* Enhanced Logo */}
-                    <div className="w-16 h-16 bg-gradient-to-br from-primary to-purple-600 rounded-2xl flex items-center justify-center shadow-lg">
-                      <svg className="w-8 h-8 text-white" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                      </svg>
-                    </div>
-
-                    <div>
-                      <h3 className="text-lg font-bold text-gray-900 mb-1">GofaGuy NG</h3>
-                      <p className="text-sm text-gray-500">Your Campus Helper 🎓</p>
-                    </div>
-
-                    {/* Enhanced Action Buttons */}
-                    <div className="w-full space-y-3">
-                      <button className="w-full bg-primary hover:bg-primary/90 text-white py-3 px-6 rounded-xl font-semibold text-sm transition-colors shadow-md">
-                        Post a Task ✨
-                      </button>
-                      <button className="w-full bg-gray-100 hover:bg-gray-200 text-gray-700 py-3 px-6 rounded-xl font-semibold text-sm transition-colors shadow-md">
-                        Browse Tasks 👀
-                      </button>
-                    </div>
-
-                    {/* Enhanced Quick Stats */}
-                    <div className="w-full bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl p-4 shadow-sm">
-                      <div className="grid grid-cols-2 gap-4 text-center">
-                        <div>
-                          <div className="text-lg font-bold text-primary">2.3k</div>
-                          <div className="text-xs text-gray-500">Active Tasks</div>
-                        </div>
-                        <div>
-                          <div className="text-lg font-bold text-accent-green">1.8k</div>
-                          <div className="text-xs text-gray-500">Helpers Online</div>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Enhanced Recent Task Preview */}
-                    <div className="w-full bg-white border border-gray-100 rounded-xl p-3 shadow-sm">
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-2">
-                          <div className="w-8 h-8 bg-accent-yellow/20 rounded-full flex items-center justify-center">
-                            <span className="text-sm">🍕</span>
-                          </div>
-                          <div className="text-left">
-                            <div className="text-sm font-semibold text-gray-900">Food Delivery</div>
-                            <div className="text-xs text-gray-500">2 min ago</div>
-                          </div>
-                        </div>
-                        <div className="text-right">
-                          <div className="text-sm font-bold text-primary">₦1,500</div>
-                          <div className="text-xs text-accent-green">Available</div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
+              
+              <div className="w-[380px]">
+                <Image
+                  src="/delivery3.png"
+                  alt="GofaGuy app on phone"
+                  width={10}
+                  height={10}
+                  className="w-full rounded-sm mr-8 shadow-lg"
+                />
+              </div>
+              
             </div>
           </motion.div>
         </div>

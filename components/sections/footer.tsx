@@ -3,6 +3,7 @@
 import { motion } from "framer-motion"
 import { Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin, ArrowRight } from "lucide-react"
 import Link from "next/link"
+import Image from "next/image"
 
 const footerLinks = [
   {
@@ -36,7 +37,7 @@ const footerLinks = [
     title: "Contact",
     links: [
       { text: "help@gofaguy.com", url: "mailto:help@gofaguy.com", icon: Mail },
-      { text: "+234 812 345 6789", url: "tel:+2347046686723", icon: Phone },
+      { text: "+234 704 668 6723", url: "tel:+2347046686723", icon: Phone },
       { text: "FUTMinna Campus", url: "#", icon: MapPin },
     ],
   },
@@ -84,12 +85,15 @@ export function Footer() {
         >
           {/* Brand Section */}
           <motion.div variants={item} className="lg:col-span-2">
-            <Link href="/" className="flex items-center space-x-2 group mb-6">
-              <div className="w-10 h-10 bg-gradient-to-br from-primary to-purple-600 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300">
-                <ArrowRight className="w-6 h-6 text-white rotate-45" />
-              </div>
-              <span className="text-2xl font-bold font-montserrat">GofaGuy</span>
-            </Link>
+            {/* Logo */}
+          <Link href="/" className="flex items-center space-x-2 group">
+            <Image
+              src="/logo.svg"
+              alt="GofaGuy Logo"
+              width={150}  
+              height={60}
+            />
+          </Link>
 
             <p className="text-gray-400 mb-6 leading-relaxed">
               Your trusted campus errand platform. Connecting students who need help with those who can provide it.

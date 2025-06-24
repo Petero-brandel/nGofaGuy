@@ -4,6 +4,16 @@ import { Badge } from "@/components/ui/badge"
 import { Clock, Users, Shield, Zap, Star, CheckCircle } from "lucide-react"
 import { motion } from "framer-motion"
 
+// GofaGuy NG Brand Colors (Tailwind HSL format)
+const BRAND_PRIMARY = "from-[hsl(230,91%,54%)] to-[hsl(225,100%,40%)]"
+const BRAND_PRIMARY_BG = "from-[hsl(230,91%,97%)] to-[hsl(225,100%,98%)]"
+const BRAND_ICON_BG = "bg-gradient-to-br from-[hsl(230,91%,54%)] to-[hsl(225,100%,40%)]"
+const BRAND_BADGE_GRADIENT = "from-[hsl(230,91%,54%)/10] to-[hsl(225,100%,40%)/10]"
+const BRAND_BORDER_COLOR = "border-[hsl(230,91%,54%)/30]"
+const BRAND_ACCENT_COLOR = "text-[hsl(230,91%,54%)]"
+const BRAND_TEXT_GRADIENT = "bg-gradient-to-r from-[hsl(230,91%,54%)] to-[hsl(158,90%,54%)]"
+const BRAND_ACCENT_GRADIENT = "from-[hsl(230,91%,54%)] to-[hsl(158,90%,54%)]"
+
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
   animate: { opacity: 1, y: 0 },
@@ -45,12 +55,12 @@ export function WhyGofaGuy() {
       title: "Instant Connections",
       description:
         "Push notifications and location-based matching connect you with nearby helpers in seconds, not hours. Get help when you need it most.",
-      gradient: "from-blue-500 via-cyan-500 to-teal-500",
-      bgGradient: "from-blue-50 via-cyan-50/30 to-teal-50",
-      iconBg: "bg-gradient-to-br from-blue-500 to-cyan-500",
-      badgeGradient: "from-blue-500/10 to-cyan-500/10",
-      borderColor: "border-blue-200/50",
-      accentColor: "text-blue-600",
+      gradient: BRAND_PRIMARY,
+      bgGradient: BRAND_PRIMARY_BG,
+      iconBg: BRAND_ICON_BG,
+      badgeGradient: BRAND_BADGE_GRADIENT,
+      borderColor: BRAND_BORDER_COLOR,
+      accentColor: BRAND_ACCENT_COLOR,
       stats: "< 30 seconds",
       feature: "Real-time matching",
     },
@@ -60,12 +70,12 @@ export function WhyGofaGuy() {
       title: "Made for Campus Life",
       description:
         "Designed specifically for university students with features like dorm delivery, class schedules, and student pricing that fits your budget.",
-      gradient: "from-emerald-500 via-green-500 to-teal-500",
-      bgGradient: "from-emerald-50 via-green-50/30 to-teal-50",
-      iconBg: "bg-gradient-to-br from-emerald-500 to-green-500",
-      badgeGradient: "from-emerald-500/10 to-green-500/10",
-      borderColor: "border-emerald-200/50",
-      accentColor: "text-emerald-600",
+      gradient: BRAND_PRIMARY,
+      bgGradient: BRAND_PRIMARY_BG,
+      iconBg: BRAND_ICON_BG,
+      badgeGradient: BRAND_BADGE_GRADIENT,
+      borderColor: BRAND_BORDER_COLOR,
+      accentColor: BRAND_ACCENT_COLOR,
       stats: "50+ campuses",
       feature: "Student verification",
     },
@@ -75,12 +85,12 @@ export function WhyGofaGuy() {
       title: "Built-in Safety",
       description:
         "Real-time tracking, in-app messaging, secure payments, and university verification keep everyone protected throughout the process.",
-      gradient: "from-purple-500 via-violet-500 to-indigo-500",
-      bgGradient: "from-purple-50 via-violet-50/30 to-indigo-50",
-      iconBg: "bg-gradient-to-br from-purple-500 to-violet-500",
-      badgeGradient: "from-purple-500/10 to-violet-500/10",
-      borderColor: "border-purple-200/50",
-      accentColor: "text-purple-600",
+      gradient: BRAND_PRIMARY,
+      bgGradient: BRAND_PRIMARY_BG,
+      iconBg: BRAND_ICON_BG,
+      badgeGradient: BRAND_BADGE_GRADIENT,
+      borderColor: BRAND_BORDER_COLOR,
+      accentColor: BRAND_ACCENT_COLOR,
       stats: "99.9% secure",
       feature: "End-to-end encryption",
     },
@@ -89,12 +99,12 @@ export function WhyGofaGuy() {
   return (
     <section id="about" className="relative py-20 sm:py-28 overflow-hidden">
       {/* Enhanced Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-white via-gray-50/50 to-indigo-50/30" />
+      <div className={`absolute inset-0 bg-gradient-to-br ${BRAND_PRIMARY_BG}`} />
 
       {/* Decorative Elements */}
-      <div className="absolute top-20 -left-40 w-80 h-80 bg-gradient-to-br from-blue-400/8 to-cyan-300/5 rounded-full blur-3xl" />
-      <div className="absolute bottom-20 -right-40 w-96 h-96 bg-gradient-to-br from-purple-400/8 to-indigo-300/5 rounded-full blur-3xl" />
-      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[32rem] h-[32rem] bg-gradient-to-br from-emerald-400/5 to-teal-300/3 rounded-full blur-3xl" />
+      <div className={`absolute top-20 -left-40 w-80 h-80 bg-gradient-to-br ${BRAND_PRIMARY} opacity-10 rounded-full blur-3xl`} />
+      <div className={`absolute bottom-20 -right-40 w-96 h-96 bg-gradient-to-br ${BRAND_PRIMARY} opacity-10 rounded-full blur-3xl`} />
+      <div className={`absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[32rem] h-[32rem] bg-gradient-to-br ${BRAND_PRIMARY} opacity-5 rounded-full blur-3xl`} />
 
       {/* Floating Geometric Shapes */}
       <motion.div
@@ -108,7 +118,7 @@ export function WhyGofaGuy() {
           repeat: Number.POSITIVE_INFINITY,
           ease: "linear",
         }}
-        className="absolute top-1/4 right-1/4 w-24 h-24 border-2 border-gradient-to-r from-blue-400/30 to-purple-400/30 rounded-3xl"
+        className={`absolute top-1/4 right-1/4 w-24 h-24 border-2 border-[hsl(230,91%,54%)/30] rounded-3xl`}
       />
       <motion.div
         animate={{
@@ -121,7 +131,7 @@ export function WhyGofaGuy() {
           repeat: Number.POSITIVE_INFINITY,
           ease: "easeInOut",
         }}
-        className="absolute bottom-1/4 left-1/4 w-20 h-20 bg-gradient-to-br from-emerald-400/20 to-teal-300/20 rounded-2xl"
+        className={`absolute bottom-1/4 left-1/4 w-20 h-20 bg-gradient-to-br ${BRAND_PRIMARY} opacity-20 rounded-2xl`}
       />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -134,7 +144,7 @@ export function WhyGofaGuy() {
         >
           <motion.div
             variants={fadeInUp}
-            className="inline-flex items-center gap-2 bg-gradient-to-r from-indigo-500/10 to-purple-500/10 text-indigo-600 px-4 py-2 rounded-full text-sm font-semibold border border-indigo-200/50 backdrop-blur-sm mb-6"
+            className={`inline-flex items-center gap-2 bg-gradient-to-r ${BRAND_BADGE_GRADIENT} ${BRAND_ACCENT_COLOR} px-4 py-2 rounded-full text-sm font-semibold border ${BRAND_BORDER_COLOR} backdrop-blur-sm mb-6`}
           >
             <Star className="w-4 h-4" />
             Why Choose Us
@@ -146,7 +156,7 @@ export function WhyGofaGuy() {
           >
             Why Choose the
             <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600">
+            <span className='text-primary'>
               GofaGuy App?
             </span>
           </motion.h2>
@@ -175,9 +185,9 @@ export function WhyGofaGuy() {
                     <div
                       className="absolute inset-0"
                       style={{
-                        backgroundImage: `radial-gradient(circle at 25% 75%, rgba(120, 119, 198, 0.15) 0%, transparent 50%), 
-                                         radial-gradient(circle at 75% 25%, rgba(255, 119, 198, 0.15) 0%, transparent 50%),
-                                         radial-gradient(circle at 50% 50%, rgba(34, 197, 94, 0.1) 0%, transparent 50%)`,
+                        backgroundImage: `radial-gradient(circle at 25% 75%, hsl(230,91%,54%,0.15) 0%, transparent 50%), 
+                                         radial-gradient(circle at 75% 25%, hsl(158,90%,54%,0.15) 0%, transparent 50%),
+                                         radial-gradient(circle at 50% 50%, hsl(225,100%,40%,0.1) 0%, transparent 50%)`,
                       }}
                     />
                   </div>
@@ -185,7 +195,7 @@ export function WhyGofaGuy() {
                   {/* Top Badge */}
                   <motion.div variants={fadeInUp} className="mb-8 text-white">
                     <Badge
-                      className={`bg-gradient-to-r ${benefit.badgeGradient} ${benefit.accentColor} border-0 px-4 py-2 text-sm font-semibold shadow-lg hover:shadow-xl transition-all duration-300 text-whit`}
+                      className={`bg-gradient-to-r ${benefit.badgeGradient} ${benefit.accentColor}  text-white border-0 px-4 py-2 text-sm font-semibold shadow-lg hover:shadow-xl transition-all duration-300`}
                     >
                       <benefit.icon className="w-4 h-4 mr-2 text-white" />
                       {benefit.badge}
@@ -251,25 +261,25 @@ export function WhyGofaGuy() {
           <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-gray-100/50 max-w-4xl mx-auto">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
               <div className="space-y-2">
-                <div className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
+                <div className={`text-3xl font-bold ${BRAND_TEXT_GRADIENT} bg-clip-text text-transparent`}>
                   50k+
                 </div>
                 <div className="text-sm text-gray-600 font-medium">Active Students</div>
               </div>
               <div className="space-y-2">
-                <div className="text-3xl font-bold bg-gradient-to-r from-emerald-600 to-green-600 bg-clip-text text-transparent">
+                <div className={`text-3xl font-bold ${BRAND_TEXT_GRADIENT} bg-clip-text text-transparent`}>
                   99.8%
                 </div>
                 <div className="text-sm text-gray-600 font-medium">Satisfaction Rate</div>
               </div>
               <div className="space-y-2">
-                <div className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-violet-600 bg-clip-text text-transparent">
+                <div className={`text-3xl font-bold ${BRAND_TEXT_GRADIENT} bg-clip-text text-transparent`}>
                   24/7
                 </div>
                 <div className="text-sm text-gray-600 font-medium">Support Available</div>
               </div>
               <div className="space-y-2">
-                <div className="text-3xl font-bold bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">
+                <div className={`text-3xl font-bold ${BRAND_TEXT_GRADIENT} bg-clip-text text-transparent`}>
                   15s
                 </div>
                 <div className="text-sm text-gray-600 font-medium">Avg Response Time</div>
@@ -278,7 +288,7 @@ export function WhyGofaGuy() {
           </div>
 
           <motion.div whileHover={{ scale: 1.05, y: -2 }} whileTap={{ scale: 0.95 }} className="mt-12">
-            <button className="inline-flex items-center gap-3 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 hover:from-indigo-600/90 hover:via-purple-600/90 hover:to-pink-600/90 text-white px-10 py-4 rounded-2xl font-semibold text-lg shadow-2xl hover:shadow-3xl transition-all duration-300">
+            <button className={`inline-flex items-center gap-3 bg-primary hover:from-[hsl(230,91%,54%)/90] hover:to-[hsl(158,90%,54%)/90] text-white px-10 py-4 rounded-2xl font-semibold text-lg shadow-2xl hover:shadow-3xl transition-all duration-300`}>
               <span>Experience the Difference</span>
               <Zap className="w-5 h-5" />
             </button>

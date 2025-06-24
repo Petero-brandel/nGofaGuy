@@ -9,6 +9,7 @@ import { WalletPayment } from "@/components/sections/wallet-payment"
 import { WhyGofaGuy } from "@/components/sections/why-gofaguy"
 import { PostExamples } from "@/components/sections/post-examples"
 import { CallToAction } from "@/components/sections/call-to-action"
+import { FAQAccordion } from "@/components/sections/FAQAccordion"
 import { Footer } from "@/components/sections/footer"
 
 export default function LandingPage() {
@@ -21,7 +22,7 @@ export default function LandingPage() {
       <HowItWorks />
       <PopularServices />
       <WhyGofaGuy />
-      <PostExamples />
+      <FAQAccordion />
       <CallToAction />
       <Footer />
     </div>
