@@ -36,7 +36,7 @@ export function Hero() {
       {/* Grid Pattern Overlay */}
       <div className="hero-grid-pattern" />
 
-      {/* Enhanced Background Blur Elements */}
+      {/* Background Gradient Circles */}
       <div className="absolute top-10 -left-40 w-80 h-80 bg-gradient-to-br from-primary/12 to-blue-400/8 rounded-full blur-3xl" />
       <div className="absolute top-1/3 -right-40 w-96 h-96 bg-gradient-to-br from-purple-400/10 to-pink-300/6 rounded-full blur-3xl" />
       <div className="absolute bottom-20 -left-32 w-72 h-72 bg-gradient-to-br from-accent-green/8 to-emerald-400/6 rounded-full blur-3xl" />
@@ -44,7 +44,7 @@ export function Hero() {
       <div className="absolute top-1/2 left-1/4 w-48 h-48 bg-gradient-to-br from-indigo-400/6 to-purple-300/4 rounded-full blur-3xl" />
       <div className="absolute top-20 right-1/3 w-56 h-56 bg-gradient-to-br from-cyan-400/8 to-blue-300/6 rounded-full blur-3xl" />
 
-      {/* Enhanced Animated Floating Elements */}
+      {/* Animated Floating Elements */}
       <motion.div
         animate={{
           x: [0, 30, 0],
@@ -117,7 +117,7 @@ export function Hero() {
               </h1>
             </motion.div>
 
-            {/* Enhanced Subtitle */}
+            {            /* Description */}
             <motion.p
               variants={item}
               className="text-lg sm:text-xl text-gray-600 leading-relaxed max-w-2xl mx-auto lg:mx-0"
@@ -128,14 +128,14 @@ export function Hero() {
               </span>
             </motion.p>
 
-            {/* Enhanced Social Proof */}
+            {/* Social Proof */}
             <motion.div
               variants={item}
               className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-6 py-4"
             >
               <div className="flex items-center gap-3">
                 <div className="flex -space-x-2">
-                  {/* Enhanced Real African Student Profile Pictures */}
+                  {/*Real African Student Profile Pictures */}
                   <motion.div
                     whileHover={{ scale: 1.1, zIndex: 10 }}
                     className="w-11 h-11 rounded-full border-3 border-white shadow-lg overflow-hidden"
@@ -169,7 +169,7 @@ export function Hero() {
                     />
                   </motion.div>
 
-                  {/* Enhanced +2k indicator */}
+                  {/* +2k indicator */}
                   <div className="w-11 h-11 rounded-full bg-[#010411] border-3 border-white flex items-center justify-center text-white text-xs font-semibold shadow-lg">
                     +2k
                   </div>
@@ -203,7 +203,7 @@ export function Hero() {
               </div>
             </motion.div>
 
-            {/* Enhanced CTA Buttons */}
+            {/* CTA Buttons */}
             <motion.div
               variants={item}
               className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-2"
@@ -237,7 +237,7 @@ export function Hero() {
               </motion.button>
             </motion.div>
 
-            {/* Enhanced Trust Indicators */}
+            {/*  Trust Indicators */}
             <motion.div
               variants={item}
               className="flex items-center justify-center lg:justify-start gap-6 pt-4 text-sm text-gray-500"
@@ -275,7 +275,7 @@ export function Hero() {
             </motion.div>
           </motion.div>
 
-          {/* Enhanced Right Content - Phone Mockup */}
+          {/*  Right Content - Phone Mockup */}
           <motion.div
             initial="hidden"
             animate="visible"
@@ -283,7 +283,7 @@ export function Hero() {
             className="lg:col-span-5 flex justify-center lg:justify-end order-2"
           >
             <div className="relative">
-              {/* Enhanced Floating Elements around Phone */}
+              {/*  Floating Elements around Phone */}
               <motion.div
                 animate={{ y: [-8, 8, -8], rotate: [0, 5, 0] }}
                 transition={{ duration: 4, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}

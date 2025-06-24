@@ -71,7 +71,7 @@ export function HowItWorks() {
 
   return (
     <section id="how-it-works" className="relative py-20 sm:py-28 overflow-hidden">
-      {/* Enhanced Background */}
+      {/*  Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-[hsl(230,91%,97%)] via-white to-[hsl(158,90%,97%)]" />
 
       {/* Decorative Elements */}
