@@ -43,6 +43,7 @@ const footerLinks = [
   },
 ]
 
+
 const socialLinks = [
   { icon: Facebook, url: "#", label: "Facebook" },
   { icon: Twitter, url: "#", label: "Twitter" },
