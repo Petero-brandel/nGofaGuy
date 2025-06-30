@@ -38,14 +38,14 @@ const phoneVariant = {
 }
 
 const taglines = [
-  "Post an errand today, A GofaGuy is always Ready to Help",
+  "Post an errand today, A GofaGuy is always Available to Help",
   "Monetize your legs, Earn with it!",
-  "Accept and Complete a Task on GofaGuy and get Paid!",
+  "Accept and Complete a Task on the GofaGuy App and get Paid!",
   "Your errand Buddy is a POST away!",
   "Turn your free time to pay Day!",
   "Your PA when Campus Stress Becomes Unbearable!",
   "Outsource the stress. Focus on Studies!",
-  "GofaGuy makes campus stress disappear!",
+  
 ];
 
 function useTypingEffect(
