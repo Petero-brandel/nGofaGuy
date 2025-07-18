@@ -99,6 +99,41 @@ export function Header() {
 
           {/* Download Button */}
           <div className="hidden md:block relative">
+            <div className="flex gap-10">
+          <div className="relative group">
+            <Button
+              variant="ghost"
+              className="text-primary hover:bg-transparent hover:text-primary text-sm font-medium flex items-center gap-1 px-0"
+              onClick={() => setActiveDropdown(activeDropdown === "Sign In As" ? null : "Sign In As")}
+              type="button"
+            >
+              Sign In
+              <ChevronDown className={`w-4 h-4 transition-transform ${activeDropdown === "Sign In As" ? "rotate-180" : ""}`} />
+            </Button>
+            {activeDropdown === "Sign In As" && (
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 10 }}
+                className="absolute left-0 mt-2 w-48 bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden z-50"
+              >
+                <div className="py-1">
+                  <Link
+                    href="/signin?seller=1"
+                    className="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
+                  >
+                    Sign In as Seller
+                  </Link>
+                  <Link
+                    href="/signin?buyer=1"
+                    className="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
+                  >
+                    Sign In as Buyer
+                  </Link>
+                </div>
+              </motion.div>
+            )}
+          </div>
             <Button
               onClick={() => setShowDownloadOptions(!showDownloadOptions)}
               className="bg-primary hover:bg-primary/90 text-white px-5 py-2 rounded-xl font-medium text-sm transition-all duration-200 flex items-center gap-2 shadow-md hover:shadow-lg"
@@ -109,6 +144,7 @@ export function Header() {
                 className={`w-4 h-4 transition-transform duration-200 ${showDownloadOptions ? "rotate-180" : ""}`}
               />
             </Button>
+            </div>
 
             {/* Download Options Dropdown */}
             {showDownloadOptions && (
