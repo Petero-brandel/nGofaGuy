@@ -10,6 +10,35 @@ import Image from "next/image"
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [showDownloadOptions, setShowDownloadOptions] = useState(false)
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
+
+  // Define dropdown items for each nav link
+  const navItems = [
+    {
+      title: "How It Works",
+      dropdown: [
+        { title: "Overview", href: "#overview" },
+        { title: "Step-by-Step Guide", href: "#step-by-step" },
+        { title: "Video Tutorial", href: "#video-tutorial" }
+      ]
+    },
+    {
+      title: "Services",
+      dropdown: [
+        { title: "All Services", href: "#all-services" },
+        { title: "Popular Services", href: "#popular-services" },
+        { title: "Special Offers", href: "#special-offers" }
+      ]
+    },
+    {
+      title: "About",
+      dropdown: [
+        { title: "Our Story", href: "#our-story" },
+        { title: "Team", href: "#team" },
+        { title: "Testimonials", href: "#testimonials" }
+      ]
+    }
+  ]
 
   return (
     <header className="bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-gray-100">
@@ -25,18 +54,46 @@ export function Header() {
             />
           </Link>
 
-
           {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-8">
-            {["How It Works", "Services", "About"].map((item) => (
-              <Link
-                key={item}
-                href={`#${item.toLowerCase().replace(/\s+/g, "-")}`}
-                className="text-gray-600 hover:text-primary transition-colors relative group text-sm font-medium"
+            {navItems.map((item) => (
+              <div 
+                key={item.title}
+                className="relative"
+                onMouseEnter={() => setActiveDropdown(item.title)}
+                onMouseLeave={() => setActiveDropdown(null)}
               >
-                {item}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full" />
-              </Link>
+                <Link
+                  href={`#${item.title.toLowerCase().replace(/\s+/g, "-")}`}
+                  className="text-gray-600 hover:text-primary transition-colors relative group text-sm font-medium flex items-center gap-1"
+                >
+                  {item.title}
+                  <ChevronDown className={`w-4 h-4 transition-transform ${activeDropdown === item.title ? "rotate-180" : ""}`} />
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full" />
+                </Link>
+
+                {/* Dropdown Menu */}
+                {activeDropdown === item.title && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 10 }}
+                    className="absolute left-0 mt-2 w-48 bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden z-50"
+                  >
+                    <div className="py-1">
+                      {item.dropdown.map((dropdownItem) => (
+                        <Link
+                          key={dropdownItem.title}
+                          href={dropdownItem.href}
+                          className="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
+                        >
+                          {dropdownItem.title}
+                        </Link>
+                      ))}
+                    </div>
+                  </motion.div>
+                )}
+              </div>
             ))}
           </nav>
 
@@ -128,15 +185,40 @@ export function Header() {
           }}
         >
           <div className="px-4 py-3 space-y-1">
-            {["How It Works", "Services", "About"].map((item) => (
-              <Link
-                key={item}
-                href={`#${item.toLowerCase().replace(/\s+/g, "-")}`}
-                className="block py-2 text-gray-700 hover:text-primary transition-colors"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                {item}
-              </Link>
+            {navItems.map((item) => (
+              <div key={item.title} className="relative">
+                <button
+                  className="w-full flex justify-between items-center py-2 text-gray-700 hover:text-primary transition-colors"
+                  onClick={() => setActiveDropdown(activeDropdown === item.title ? null : item.title)}
+                >
+                  {item.title}
+                  <ChevronDown className={`w-4 h-4 transition-transform ${activeDropdown === item.title ? "rotate-180" : ""}`} />
+                </button>
+                
+                {/* Mobile Dropdown Menu */}
+                {activeDropdown === item.title && (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: "auto" }}
+                    exit={{ opacity: 0, height: 0 }}
+                    className="overflow-hidden pl-4"
+                  >
+                    {item.dropdown.map((dropdownItem) => (
+                      <Link
+                        key={dropdownItem.title}
+                        href={dropdownItem.href}
+                        className="block py-2 text-sm text-gray-600 hover:text-primary transition-colors"
+                        onClick={() => {
+                          setActiveDropdown(null)
+                          setMobileMenuOpen(false)
+                        }}
+                      >
+                        {dropdownItem.title}
+                      </Link>
+                    ))}
+                  </motion.div>
+                )}
+              </div>
             ))}
             <div className="pt-4 pb-2">
               <div className="relative">
