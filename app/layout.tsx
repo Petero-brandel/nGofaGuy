@@ -86,7 +86,7 @@ function BottomNav() {
         </li>
         <li>
           <Link
-            href="/messages"
+            href="/chat"
             className="group flex flex-col items-center gap-1 text-gray-500 hover:text-purple-600 transition-colors"
           >
             <span className="rounded-full p-2 group-hover:bg-purple-50 transition">
