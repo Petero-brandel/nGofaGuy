@@ -121,7 +121,7 @@ export default function RootLayout({
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
-      <body className="bg-white text-gray-900 font-inter antialiased relative">
+      <body className="bg-white text-gray-900 font-inter antialiased relative pb:20 lg:pb-0">
         {children}
         <BottomNav />
       </body>
