@@ -119,13 +119,13 @@ export function Header() {
               >
                 <div className="py-1">
                   <Link
-                    href="/signin?seller=1"
+                    href="/auth"
                     className="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
                   >
                     Sign In as Seller
                   </Link>
                   <Link
-                    href="/signin?buyer=1"
+                    href="/auth"
                     className="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
                   >
                     Sign In as Buyer

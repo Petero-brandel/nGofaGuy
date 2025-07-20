@@ -156,22 +156,7 @@ export function Footer() {
             <div className="text-gray-500 text-xs sm:text-sm text-center md:text-left">
               © {new Date().getFullYear()} GofaGuy Technologies Ltd. All rights reserved.
             </div>
-            <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-6 text-xs sm:text-sm">
-              <Link href="#" className="text-gray-400 hover:text-primary transition-colors">
-                Student Agreement
-              </Link>
-              <Link href="#" className="text-gray-400 hover:text-primary transition-colors">
-                Campus Guidelines
-              </Link>
-              <div className="flex items-center gap-2 text-gray-400">
-                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-                <span>All systems operational</span>
-              </div>
-            </div>
-          </div>
-          {/* Made with love */}
-          <div className="text-center mt-5 text-gray-500 text-xs sm:text-sm">
-            Made with Love for students, by students in Nigeria 🇳🇬
+          
           </div>
         </motion.div>
       </div>
