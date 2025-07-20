@@ -3,12 +3,9 @@ import "./globals.css"
 import { Inter, Montserrat } from "next/font/google"
 import type { Metadata } from "next"
 import Link from "next/link"
-import {
-  Home as HomeIcon,
-  PlusSquare,
-  MessageSquare,
-  ShieldCheck,
-} from "lucide-react" // Lucide icons
+import { HomeIcon, PlusSquare, MessageSquare, ShieldCheck } from "lucide-react" // Lucide icons
+import { AuthProvider } from "@/lib/auth/auth-context" // Keep AuthProvider
+import { Toaster } from "sonner" // Keep Toaster
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" })
 const montserrat = Montserrat({ subsets: ["latin"], variable: "--font-montserrat" })
@@ -97,7 +94,7 @@ function BottomNav() {
         </li>
         <li>
           <Link
-            href="/govault"
+            href="/wallet"
             className="group flex flex-col items-center gap-1 text-gray-500 hover:text-yellow-600 transition-colors"
           >
             <span className="rounded-full p-2 group-hover:bg-yellow-50 transition">
@@ -121,8 +118,20 @@ export default function RootLayout({
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
-      <body className="bg-white text-gray-900 font-inter antialiased relative pb:20 lg:pb-0">
-        {children}
+      <body className="bg-white text-gray-900 font-inter antialiased relative pb-20 lg:pb-0">
+        <AuthProvider>
+          {children}
+          <Toaster
+            position="top-right"
+            toastOptions={{
+              style: {
+                background: "white",
+                border: "1px solid #e5e7eb",
+                color: "#374151",
+              },
+            }}
+          />
+        </AuthProvider>
         <BottomNav />
       </body>
     </html>
