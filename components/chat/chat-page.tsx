@@ -180,7 +180,7 @@ export function ChatPage() {
   const [messages, setMessages] = useState<Message[]>(initialMessages)
   const [selectedChat, setSelectedChat] = useState<string | null>("1")
   const [messageInput, setMessageInput] = useState("")
-  const [showChatList, setShowChatList] = useState(false)
+  const [showChatList, setShowChatList] = useState(true)
   const [searchQuery, setSearchQuery] = useState("")
   const [editingMessageId, setEditingMessageId] = useState<string | null>(null)
   const [editingMessageContent, setEditingMessageContent] = useState("")
@@ -476,7 +476,7 @@ export function ChatPage() {
                   <div className="relative flex-shrink-0">
                     <Avatar className="w-14 h-14 ring-2 ring-white shadow-sm">
                       <AvatarImage src={conversation.avatar || undefined} />
-                      <AvatarFallback className="bg-gradient-to-br from-blue-100 to-blue-50 text-blue-700 font-semibold text-sm">
+                      <AvatarFallback className="bg-gradient-to-br from-blue-100 to-blue-50 text-[#010411] font-bold text-sm">
                         {getInitials(conversation.name)}
                       </AvatarFallback>
                     </Avatar>
@@ -484,7 +484,7 @@ export function ChatPage() {
                       <motion.div
                         initial={{ scale: 0 }}
                         animate={{ scale: 1 }}
-                        className="absolute -bottom-1 -right-1 w-5 h-5 bg-green-500 border-3 border-white rounded-full shadow-sm"
+                        className="absolute -bottom-1 -right-0 w-2 h-2 bg-green-500 border-3 border-white rounded-full shadow-sm"
                       />
                     )}
                   </div>
@@ -617,7 +617,7 @@ export function ChatPage() {
                         </AvatarFallback>
                       </Avatar>
                       {conversation.isOnline && (
-                        <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-green-500 border-3 border-white rounded-full" />
+                        <div className="absolute -bottom-1 -right-1 w-2 h-2 bg-green-500 border-3 border-white rounded-full" />
                       )}
                     </div>
 
@@ -784,7 +784,7 @@ export function ChatPage() {
                         </DropdownMenuItem>
                         <DropdownMenuItem
                           onClick={() => handleDeleteMessage(msg.id)}
-                          className="text-red-600 focus:text-red-600"
+                          className="text-red-600 focus:text-red-600 hover:bg-blue-500"
                         >
                           <Trash2 className="mr-2 h-4 w-4" /> Delete
                         </DropdownMenuItem>
@@ -923,3 +923,12 @@ export function ChatPage() {
     </div>
   )
 }
+
+
+
+
+
+
+
+
+
