@@ -608,7 +608,7 @@ export function ChatPage() {
                   }}
                   className="mx-2 mb-3 p-5 rounded-2xl hover:bg-gray-50 transition-all duration-200 relative"
                 >
-                  <div className="flex items-start gap-4">
+                  <div className="flex items-start gap-2">
                     <div className="relative">
                       <Avatar className="w-14 h-14 ring-2 ring-white shadow-sm">
                         <AvatarImage src={conversation.avatar || undefined} />
