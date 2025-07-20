@@ -1,15 +1,25 @@
-import type React from "react"
-import "./globals.css"
-import { Inter, Montserrat } from "next/font/google"
-import type { Metadata } from "next"
-import Link from "next/link"
-import { HomeIcon, PlusSquare, MessageSquare, ShieldCheck } from "lucide-react" // Lucide icons
-import { AuthProvider } from "@/lib/auth/auth-context" // Keep AuthProvider
-import { Toaster } from "sonner" // Keep Toaster
+import type React from "react";
+import "./globals.css";
+import { Inter, Montserrat } from "next/font/google";
+import type { Metadata } from "next";
+import Link from "next/link";
+import {
+  HomeIcon,
+  PlusSquare,
+  MessageSquare,
+  ShieldCheck,
+} from "lucide-react";
+import { AuthProvider } from "@/lib/auth/auth-context";
+import { Toaster } from "sonner";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" })
-const montserrat = Montserrat({ subsets: ["latin"], variable: "--font-montserrat" })
+// Font variables
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  variable: "--font-montserrat",
+});
 
+// SEO Metadata
 export const metadata: Metadata = {
   title: "GofaGuy – Campus Errand Network",
   description:
@@ -28,7 +38,8 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://gofaguy.com"),
   openGraph: {
     title: "GofaGuy – Campus Errand Network",
-    description: "Get things done or earn on campus with GofaGuy – post errands or run them for cash.",
+    description:
+      "Get things done or earn on campus with GofaGuy – post errands or run them for cash.",
     url: "https://gofaguy.com",
     siteName: "GofaGuy",
     images: [
@@ -45,13 +56,14 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "GofaGuy – Campus Errand Network",
-    description: "A student-powered errand app for campus. Post errands. Earn. Connect.",
+    description:
+      "A student-powered errand app for campus. Post errands. Earn. Connect.",
     creator: "@yourhandle",
     images: ["/og-image.png"],
   },
-}
+};
 
-// Modern Bottom Navigation Component
+// Bottom Navigation (Mobile Only)
 function BottomNav() {
   return (
     <nav
@@ -89,7 +101,9 @@ function BottomNav() {
             <span className="rounded-full p-2 group-hover:bg-purple-50 transition">
               <MessageSquare size={28} strokeWidth={2.2} />
             </span>
-            <span className="text-xs font-semibold tracking-wide">Messages</span>
+            <span className="text-xs font-semibold tracking-wide">
+              Messages
+            </span>
           </Link>
         </li>
         <li>
@@ -100,24 +114,24 @@ function BottomNav() {
             <span className="rounded-full p-2 group-hover:bg-yellow-50 transition">
               <ShieldCheck size={28} strokeWidth={2.2} />
             </span>
-            <span className="text-xs font-semibold tracking-wide">GoVault</span>
+            <span className="text-xs font-semibold tracking-wide">
+              GoVault
+            </span>
           </Link>
         </li>
       </ul>
     </nav>
-  )
+  );
 }
 
+// Main Layout Component
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <html lang="en" className={`${inter.variable} ${montserrat.variable}`}>
-      <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-      </head>
       <body className="bg-white text-gray-900 font-inter antialiased relative pb-20 lg:pb-0">
         <AuthProvider>
           {children}
@@ -135,16 +149,16 @@ export default function RootLayout({
         <BottomNav />
       </body>
     </html>
-  )
+  );
 }
 
-// Runtime and cache settings
-export const dynamic = "force-dynamic"
-export const revalidate = 60
-export const fetchCache = "force-no-store"
-export const runtime = "edge"
-export const preferredRegion = "auto"
-export const dynamicParams = false
-export const fetchCacheKey = "gofaguy-layout"
-export const fetchCacheTtl = 60
-export const fetchCacheMaxAge = 60
+// Runtime and Caching Hints
+export const dynamic = "force-dynamic";
+export const revalidate = 60;
+export const fetchCache = "force-no-store";
+export const runtime = "edge";
+export const preferredRegion = "auto";
+export const dynamicParams = false;
+export const fetchCacheKey = "gofaguy-layout";
+export const fetchCacheTtl = 60;
+export const fetchCacheMaxAge = 60;
