@@ -484,7 +484,7 @@ export function ChatPage() {
                       <motion.div
                         initial={{ scale: 0 }}
                         animate={{ scale: 1 }}
-                        className="absolute -bottom-1 -right-0 w-2 h-2 bg-green-500 border-3 border-white rounded-full shadow-sm"
+                        className="absolute -bottom-1 -right-0 w-4 h-4 bg-green-500 border-3 border-white rounded-full shadow-sm"
                       />
                     )}
                   </div>
@@ -617,7 +617,7 @@ export function ChatPage() {
                         </AvatarFallback>
                       </Avatar>
                       {conversation.isOnline && (
-                        <div className="absolute -bottom-1 -right-1 w-2 h-2 bg-green-500 border-3 border-white rounded-full" />
+                        <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 border-3 border-white rounded-full" />
                       )}
                     </div>
 
