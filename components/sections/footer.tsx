@@ -124,7 +124,7 @@ export function Footer() {
             <motion.div
               key={section.title}
               variants={item}
-              className="lg:col-span-1 flex flex-col items-center lg:items-start"
+              className="lg:col-span-1 flex flex-col lg:items-start"
             >
               <h3 className="text-lg font-semibold mb-5 font-montserrat text-white">{section.title}</h3>
               <ul className="space-y-3">
@@ -132,7 +132,7 @@ export function Footer() {
                   <li key={linkIndex}>
                     <Link
                       href={link.url}
-                      className="text-gray-400 hover:text-primary transition-colors duration-200 flex items-center gap-2 group"
+                      className="text-gray-400 hover:text-primary transition-colors duration-200 flex gap-2 group"
                     >
                       {link.icon && <link.icon className="w-4 h-4 group-hover:scale-110 transition-transform" />}
                       <span className="group-hover:translate-x-1 transition-transform duration-200">{link.text}</span>

@@ -69,7 +69,7 @@ export default function WalletOverviewPage() {
             type="text"
             value={userWalletId}
             readOnly
-            className="flex-1 bg-gray-50/80 border-2 border-gray-100 rounded-xl px-5 py-3.5 text-gray-800 font-mono text-base focus:ring-2 focus:ring-[#1657FB]/20 focus:border-[#1657FB] transition-all duration-300"
+            className="flex-1 dark:bg-red-700 bg-gray-50/80 border-2 border-gray-100 rounded-xl px-5 py-3.5 text-gray-800 font-mono text-base focus:ring-2 focus:ring-[#1657FB]/20 focus:border-[#1657FB] transition-all duration-300"
           />
           <Button
             onClick={handleCopyWalletId}

@@ -3,71 +3,59 @@
 import { motion } from "framer-motion"
 import { CheckCircle, Zap, CreditCard, Users, Star } from "lucide-react"
 
-const container = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1, delayChildren: 0.2 },
-  },
-}
-
-const item = {
-  hidden: { y: 20, opacity: 0 },
-  visible: {
-    y: 0,
-    opacity: 1,
-    transition: { type: "spring" as const, stiffness: 300, damping: 24 },
-  },
+const springTransition = {
+  type: "spring",
+  stiffness: 300,
+  damping: 20
 }
 
 export function WalletPayment() {
   return (
-    <section className="relative overflow-hidden py-16 sm:py-24 bg-white">
+    <section className="relative overflow-hidden py-16 sm:py-24 bg-background">
       {/* Background Elements */}
       <div className="absolute top-20 -left-32 w-64 h-64 bg-primary/5 rounded-full blur-3xl" />
-      <div className="absolute bottom-20 -right-32 w-64 h-64 bg-purple-400/5 rounded-full blur-3xl" />
+      <div className="absolute bottom-20 -right-32 w-64 h-64 bg-accent/5 rounded-full blur-3xl" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header Section */}
         <motion.div
-          initial="hidden"
-          whileInView="visible"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          variants={container}
           className="text-center mb-16"
         >
-          <motion.h2
-            variants={item}
-            className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 leading-tight"
-          >
-           Robust In-App
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-4 leading-tight">
+            Robust In-App
             <br />
-            <span className="text-primary">
-              Wallet System
-            </span>
-          </motion.h2>
-          <motion.div variants={item} className="flex justify-center">
-            <div className="w-12 h-12 bg-gray-900 rounded-xl flex items-center justify-center">
-              <svg className="w-6 h-6 text-white" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-              </svg>
+            <span className="text-primary">Wallet System</span>
+          </h2>
+          
+          <motion.div 
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            className="inline-flex items-center justify-center"
+          >
+            <div className="w-12 h-12 bg-foreground rounded-xl flex items-center justify-center shadow-md">
+              <Star className="w-6 h-6 text-background" />
             </div>
           </motion.div>
         </motion.div>
 
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={container}
-          className="grid grid-cols-1 lg:grid-cols-3 gap-6"
-        >
+        {/* Cards Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Faster Payments Card */}
-          <motion.div variants={item} className="relative">
-            <div className="bg-primary rounded-3xl p-8 h-full text-white relative overflow-hidden">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ ...springTransition, delay: 0.1 }}
+            viewport={{ once: true }}
+            className="relative"
+          >
+            <div className="bg-primary rounded-3xl p-8 h-full text-primary-foreground relative overflow-hidden">
               {/* Background Decorative Elements */}
-              <div className="absolute top-0 right-0 w-32 h-32 bg-blue-400/20 rounded-full blur-2xl" />
-              <div className="absolute bottom-0 left-0 w-24 h-24 bg-purple-400/30 rounded-full blur-xl" />
-              <div className="absolute top-1/2 right-1/4 w-16 h-16 bg-indigo-300/20 rounded-full blur-lg" />
+              <div className="absolute top-0 right-0 w-32 h-32 bg-primary/20 rounded-full blur-2xl" />
+              <div className="absolute bottom-0 left-0 w-24 h-24 bg-accent/30 rounded-full blur-xl" />
 
               <div className="relative z-10">
                 <h3 className="text-2xl font-bold mb-4">
@@ -75,54 +63,67 @@ export function WalletPayment() {
                   <br />
                   payments
                 </h3>
-                <p className="text-purple-100 mb-8 leading-relaxed">
+                <p className="text-primary-foreground/80 mb-8 leading-relaxed">
                   Receive your task payments instantly in your campus wallet. Access or withdraw from any time.
                 </p>
 
                 {/* Notification Card */}
-                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 border shadow-lg border-white/20">
+                <motion.div 
+                  whileHover={{ y: -3 }}
+                  className="bg-background/10 backdrop-blur-sm rounded-2xl p-4 border shadow-lg border-primary/20"
+                >
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 bg-gray-900 rounded-xl flex items-center justify-center">
-                      <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                      </svg>
+                    <div className="w-10 h-10 bg-foreground rounded-xl flex items-center justify-center">
+                      <Star className="w-5 h-5 text-background" />
                     </div>
                     <div>
                       <div className="text-sm font-semibold">Account Credited</div>
-                      <div className="text-xs text-purple-200">
+                      <div className="text-xs text-primary-foreground/70">
                         Your NGN Balance has been credited with ₦2500 from Adebayo M.
                       </div>
                     </div>
                   </div>
-                </div>
+                </motion.div>
               </div>
             </div>
           </motion.div>
 
           {/* No Unnecessary Hassles Card */}
-          <motion.div variants={item} className="relative">
-            <div className="bg-gray-100 shadow-lg rounded-3xl p-8 h-full relative overflow-hidden">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ ...springTransition, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="relative"
+          >
+            <div className="bg-card shadow-lg rounded-3xl p-8 h-full relative overflow-hidden">
               {/* Background Decorative Elements */}
-              <div className="absolute top-1/4 left-1/4 w-20 h-2 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full transform rotate-12" />
-              <div className="absolute top-1/2 right-1/4 w-16 h-2 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full transform -rotate-12" />
-              <div className="absolute bottom-1/3 left-1/3 w-12 h-2 bg-gradient-to-r from-indigo-400 to-blue-400 rounded-full transform rotate-45" />
+              <div className="absolute top-1/4 left-1/4 w-20 h-1 bg-gradient-to-r from-primary to-accent rounded-full transform rotate-12" />
+              <div className="absolute top-1/2 right-1/4 w-16 h-1 bg-gradient-to-r from-accent to-primary rounded-full transform -rotate-12" />
 
               {/* Checkmark Elements */}
-              <div className="absolute top-1/4 right-1/4 w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
+              <motion.div 
+                animate={{ scale: [1, 1.1, 1] }}
+                transition={{ duration: 2, repeat: Infinity }}
+                className="absolute top-1/4 right-1/4 w-8 h-8 bg-green-500 rounded-full flex items-center justify-center shadow-sm"
+              >
                 <CheckCircle className="w-5 h-5 text-white" />
-              </div>
-              <div className="absolute bottom-1/4 left-1/4 w-6 h-6 bg-green-400 rounded-full flex items-center justify-center">
+              </motion.div>
+              <motion.div 
+                animate={{ scale: [1, 1.05, 1] }}
+                transition={{ duration: 2.5, repeat: Infinity, delay: 0.5 }}
+                className="absolute bottom-1/4 left-1/4 w-6 h-6 bg-green-400 rounded-full flex items-center justify-center shadow-sm"
+              >
                 <CheckCircle className="w-4 h-4 text-white" />
-              </div>
-              <div className="absolute top-1/2 left-1/2 w-4 h-4 bg-blue-500 rounded-full" />
+              </motion.div>
 
               <div className="relative z-10">
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                <h3 className="text-2xl font-bold text-foreground mb-4">
                   No unnecessary
                   <br />
                   hassles
                 </h3>
-                <p className="text-gray-600 leading-relaxed">
+                <p className="text-muted-foreground leading-relaxed">
                   A simple system where students never have to worry about payment delays or disputes again.
                 </p>
               </div>
@@ -130,11 +131,17 @@ export function WalletPayment() {
           </motion.div>
 
           {/* Credit from Platforms Card */}
-          <motion.div variants={item} className="relative">
-            <div className="bg-gradient-to-br from-gray-800 via-gray-900 to-black rounded-3xl p-8 h-full text-white relative overflow-hidden">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ ...springTransition, delay: 0.3 }}
+            viewport={{ once: true }}
+            className="relative"
+          >
+            <div className="bg-gradient-to-br from-gray-900 to-foreground rounded-3xl p-8 h-full text-background relative overflow-hidden">
               {/* Background Decorative Elements */}
               <div className="absolute top-0 left-0 w-24 h-24 bg-primary/10 rounded-full blur-xl" />
-              <div className="absolute bottom-0 right-0 w-32 h-32 bg-green-400/10 rounded-full blur-2xl" />
+              <div className="absolute bottom-0 right-0 w-32 h-32 bg-accent/10 rounded-full blur-2xl" />
 
               <div className="relative z-10">
                 <h3 className="text-2xl font-bold mb-4">
@@ -149,32 +156,51 @@ export function WalletPayment() {
                 {/* Platform Icons */}
                 <div className="relative w-32 h-32 mx-auto">
                   {/* Center Icon */}
-                  <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-12 h-12 bg-white rounded-full flex items-center justify-center z-10">
-                    <span className="text-gray-900 font-bold text-sm">GG</span>
-                  </div>
+                  <motion.div 
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                    className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-12 h-12 bg-background rounded-full flex items-center justify-center z-10 shadow-lg"
+                  >
+                    <span className="text-foreground font-bold text-sm">GG</span>
+                  </motion.div>
 
                   {/* Surrounding Icons */}
-                  <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-10 h-10 bg-green-500 rounded-full flex items-center justify-center">
-                    <Zap className="w-5 h-5 text-white" />
-                  </div>
-                  <div className="absolute top-1/4 right-0 w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center">
-                    <CreditCard className="w-5 h-5 text-white" />
-                  </div>
-                  <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-10 h-10 bg-purple-500 rounded-full flex items-center justify-center">
+                  <motion.div 
+                    whileHover={{ scale: 1.2 }}
+                    className="absolute top-0 left-1/2 transform -translate-x-1/2 w-10 h-10 bg-accent rounded-full flex items-center justify-center shadow-md"
+                  >
+                    <Zap className="w-5 h-5 text-foreground" />
+                  </motion.div>
+                  <motion.div 
+                    whileHover={{ scale: 1.2 }}
+                    className="absolute top-1/4 right-0 w-10 h-10 bg-primary rounded-full flex items-center justify-center shadow-md"
+                  >
+                    <CreditCard className="w-5 h-5 text-primary-foreground" />
+                  </motion.div>
+                  <motion.div 
+                    whileHover={{ scale: 1.2 }}
+                    className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-10 h-10 bg-purple-500 rounded-full flex items-center justify-center shadow-md"
+                  >
                     <Users className="w-5 h-5 text-white" />
-                  </div>
-                  <div className="absolute top-1/4 left-0 w-10 h-10 bg-orange-500 rounded-full flex items-center justify-center">
+                  </motion.div>
+                  <motion.div 
+                    whileHover={{ scale: 1.2 }}
+                    className="absolute top-1/4 left-0 w-10 h-10 bg-orange-500 rounded-full flex items-center justify-center shadow-md"
+                  >
                     <Star className="w-5 h-5 text-white" />
-                  </div>
+                  </motion.div>
 
                   {/* Connection Lines */}
-                  <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-24 h-24 border border-gray-600 rounded-full opacity-30" />
+                  <motion.div 
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
+                    className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-24 h-24 border border-border/20 rounded-full"
+                  />
                 </div>
-
               </div>
             </div>
           </motion.div>
-        </motion.div>
+        </div>
       </div>
     </section>
   )
