@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
 import {
   ArrowLeft,
   Edit3,
@@ -275,22 +276,25 @@ export default function ProfilePage() {
       >
         <div className="max-w-4xl mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <button
-              className={`p-2 rounded-xl transition-colors ${
-                resolvedTheme === "dark"
-                  ? "text-white hover:bg-gray-800"
-                  : "text-gray-700 hover:bg-gray-100"
-              }`}
-            >
-              <ArrowLeft className="w-5 h-5" />
-            </button>
+            <Link href="/">
+              <button
+                className={`p-2 rounded-xl transition-colors ${
+                  resolvedTheme === "dark"
+                    ? "text-white hover:bg-gray-800"
+                    : "text-gray-700 hover:bg-gray-100"
+                }`}
+              >
+                <ArrowLeft className="w-5 h-5" />
+              </button>
+            </Link>
+
             <div>
               <h1
                 className={`text-xl font-bold ${
                   resolvedTheme === "dark" ? "text-white" : "text-gray-900"
                 }`}
               >
-                Profile
+                Hi, Alex
               </h1>
               <p
                 className={`text-sm ${
@@ -369,20 +373,6 @@ export default function ProfilePage() {
                     />
                   </div>
                 </div>
-
-                {/* Online Status */}
-                {userProfile.isOnline && (
-                  <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-[#1FF3A5] rounded-full border-4 border-white dark:border-gray-800 flex items-center justify-center shadow-lg">
-                    <div className="w-3 h-3 bg-white rounded-full" />
-                  </div>
-                )}
-
-                {/* Verification Badge */}
-                {userProfile.isVerified && (
-                  <div className="absolute -top-2 -left-2 w-8 h-8 bg-[#1FF3A5] rounded-full flex items-center justify-center shadow-lg">
-                    <CheckCircle className="w-5 h-5 text-white" />
-                  </div>
-                )}
 
                 {/* Camera Button (only for own profile) */}
                 {isOwnProfile && (
