@@ -10,7 +10,7 @@ interface WalletFormCardProps {
 export function WalletFormCard({ children }: WalletFormCardProps) {
   return (
     <motion.div
-      className="bg-white/70 backdrop-blur-xl border border-gray-100/50 p-7 rounded-3xl shadow-lg"
+      className="bg-white/70 dark:bg-primary-foreground backdrop-blur-xl border border-gray-100/50 p-7 rounded-3xl shadow-lg"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: 0.2, type: "spring", stiffness: 100, damping: 15 }}

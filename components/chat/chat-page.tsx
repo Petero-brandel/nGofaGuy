@@ -20,12 +20,12 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
-import { toast } from "sonner" // Assuming toast is available from sonner
+import { toast } from "sonner"
 
 interface Conversation {
   id: string
   name: string
-  avatar: string // This should be an empty string if no image
+  avatar: string
   lastMessage: string
   timestamp: string
   unreadCount: number
@@ -41,31 +41,23 @@ interface Message {
   status: "sent" | "delivered" | "read"
 }
 
-// Helper function to generate initials from full name
 const getInitials = (name: string): string => {
-  if (!name || typeof name !== "string") {
-    return "?"
-  }
-
-  const parts = name.trim().split(/\s+/) // Split by one or more whitespace characters
-  if (parts.length === 0) {
-    return "?"
-  }
-
+  if (!name || typeof name !== "string") return "?"
+  const parts = name.trim().split(/\s+/)
+  if (parts.length === 0) return "?"
   const initials = parts
-    .filter((word) => word.length > 0) // Ensure no empty strings from multiple spaces
+    .filter((word) => word.length > 0)
     .map((word) => word.charAt(0).toUpperCase())
     .join("")
-    .slice(0, 2) // Take up to the first two initials
-
-  return initials || "?" // Return '?' if initials are still empty (e.g., name was just spaces)
+    .slice(0, 2)
+  return initials || "?"
 }
 
 const initialConversations: Conversation[] = [
   {
     id: "1",
     name: "Williams Adebayo",
-    avatar: "", // Explicitly empty to trigger fallback
+    avatar: "",
     lastMessage: "Perfect, appreciate it!",
     timestamp: "4:47PM",
     unreadCount: 0,
@@ -75,7 +67,7 @@ const initialConversations: Conversation[] = [
   {
     id: "2",
     name: "Sarah Johnson",
-    avatar: "", // Empty to show initials
+    avatar: "",
     lastMessage: "I can help with your grocery run! 🛒",
     timestamp: "2:30PM",
     unreadCount: 2,
@@ -85,7 +77,7 @@ const initialConversations: Conversation[] = [
   {
     id: "3",
     name: "Mike Chen",
-    avatar: "", // Empty to show initials
+    avatar: "",
     lastMessage: "Task completed! Thanks for the tip",
     timestamp: "1:15PM",
     unreadCount: 0,
@@ -95,7 +87,7 @@ const initialConversations: Conversation[] = [
   {
     id: "4",
     name: "Emma Wilson",
-    avatar: "", // Empty to show initials
+    avatar: "",
     lastMessage: "When do you need this done?",
     timestamp: "Yesterday",
     unreadCount: 1,
@@ -105,7 +97,7 @@ const initialConversations: Conversation[] = [
   {
     id: "5",
     name: "SingleName",
-    avatar: "", // Test single name
+    avatar: "",
     lastMessage: "Hello!",
     timestamp: "Yesterday",
     unreadCount: 0,
@@ -114,7 +106,7 @@ const initialConversations: Conversation[] = [
   },
   {
     id: "6",
-    name: "  ", // Test empty/whitespace name
+    name: "  ",
     avatar: "",
     lastMessage: "Test",
     timestamp: "Yesterday",
@@ -124,7 +116,7 @@ const initialConversations: Conversation[] = [
   },
   {
     id: "7",
-    name: "A", // Test single letter name
+    name: "A",
     avatar: "",
     lastMessage: "Test",
     timestamp: "Yesterday",
@@ -134,7 +126,7 @@ const initialConversations: Conversation[] = [
   },
   {
     id: "8",
-    name: "John P. Smith", // Test middle initial
+    name: "John P. Smith",
     avatar: "",
     lastMessage: "Test",
     timestamp: "Yesterday",
@@ -145,7 +137,7 @@ const initialConversations: Conversation[] = [
   {
     id: "9",
     name: "Existing User",
-    avatar: "/placeholder.svg?height=40&width=40&text=EU", // Test with an actual image URL
+    avatar: "/placeholder.svg?height=40&width=40&text=EU",
     lastMessage: "This should show an image!",
     timestamp: "Now",
     unreadCount: 0,
@@ -187,119 +179,10 @@ export function ChatPage() {
   const messagesEndRef = useRef<HTMLDivElement>(null)
 
   const emojiCategories = {
-    Smileys: [
-      "😀",
-      "😃",
-      "😄",
-      "😁",
-      "😆",
-      "😅",
-      "😂",
-      "🤣",
-      "😊",
-      "😇",
-      "🙂",
-      "🙃",
-      "😉",
-      "😌",
-      "😍",
-      "🥰",
-      "😘",
-      "😗",
-      "😙",
-      "😚",
-      "😋",
-      "😛",
-      "😝",
-      "😜",
-      "🤪",
-      "🤨",
-      "🧐",
-      "🤓",
-      "😎",
-      "🤩",
-      "🥳",
-    ],
-    Gestures: [
-      "👍",
-      "👎",
-      "👌",
-      "🤌",
-      "🤏",
-      "✌️",
-      "🤞",
-      "🤟",
-      "🤘",
-      "🤙",
-      "👈",
-      "👉",
-      "👆",
-      "🖕",
-      "👇",
-      "☝️",
-      "👏",
-      "🙌",
-      "👐",
-      "🤲",
-      "🤝",
-      "🙏",
-      "✊",
-      "👊",
-      "🤛",
-      "🤜",
-    ],
-    Hearts: [
-      "❤️",
-      "🧡",
-      "💛",
-      "💚",
-      "💙",
-      "💜",
-      "🖤",
-      "🤍",
-      "🤎",
-      "💔",
-      "❣️",
-      "💕",
-      "💞",
-      "💓",
-      "💗",
-      "💖",
-      "💘",
-      "💝",
-      "💟",
-    ],
-    Objects: [
-      "📱",
-      "💻",
-      "⌨️",
-      "🖥️",
-      "🖨️",
-      "🖱️",
-      "💾",
-      "💿",
-      "📀",
-      "🎮",
-      "🕹️",
-      "📷",
-      "📸",
-      "📹",
-      "🎥",
-      "📞",
-      "☎️",
-      "📟",
-      "📠",
-      "📺",
-      "📻",
-      "🎙️",
-      "🎚️",
-      "🎛️",
-      "⏰",
-      "⏲️",
-      "⏱️",
-      "🕰️",
-      "📡",
-    ],
+    Smileys: ["😀", "😃", "😄", "😁", "😆", "😅", "😂", "🤣", "😊", "😇", "🙂", "🙃", "😉", "😌", "😍", "🥰", "😘", "😗", "😙", "😚", "😋", "😛", "😝", "😜", "🤪", "🤨", "🧐", "🤓", "😎", "🤩", "🥳"],
+    Gestures: ["👍", "👎", "👌", "🤌", "🤏", "✌️", "🤞", "🤟", "🤘", "🤙", "👈", "👉", "👆", "🖕", "👇", "☝️", "👏", "🙌", "👐", "🤲", "🤝", "🙏", "✊", "👊", "🤛", "🤜"],
+    Hearts: ["❤️", "🧡", "💛", "💚", "💙", "💜", "🖤", "🤍", "🤎", "💔", "❣️", "💕", "💞", "💓", "💗", "💖", "💘", "💝", "💟"],
+    Objects: ["📱", "💻", "⌨️", "🖥️", "🖨️", "🖱️", "💾", "💿", "📀", "🎮", "🕹️", "📷", "📸", "📹", "🎥", "📞", "☎️", "📟", "📠", "📺", "📻", "🎙️", "🎚️", "🎛️", "⏰", "⏲️", "⏱️", "🕰️", "📡"],
   }
 
   useEffect(() => {
@@ -317,7 +200,6 @@ export function ChatPage() {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
   }, [messages])
 
-  // Filter conversations based on search query
   const filteredConversations = conversations.filter(
     (conversation) =>
       conversation.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -387,7 +269,7 @@ export function ChatPage() {
     if (window.confirm("Are you sure you want to delete this conversation?")) {
       setConversations((prev) => prev.filter((c) => c.id !== conversationId))
       if (selectedChat === conversationId) {
-        setSelectedChat(null) // Deselect if the current chat is deleted
+        setSelectedChat(null)
       }
       toast.error("Conversation deleted!")
     }
@@ -396,26 +278,28 @@ export function ChatPage() {
   const selectedConversation = conversations.find((c) => c.id === selectedChat)
 
   return (
-    <div className="h-screen bg-gray-50/30 flex">
+    <div className="h-screen bg-gray-50/30 dark:bg-gray-900/80 flex">
       {/* Chat List Sidebar - Desktop Only */}
       <motion.div
         initial={{ x: -20, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
         transition={{ duration: 0.4, ease: "easeOut" }}
-        className="hidden lg:flex w-96 bg-white/80 backdrop-blur-xl border-r border-gray-100/50 flex-col shadow-sm"
+        className="hidden lg:flex w-96 bg-white/80 dark:bg-gray-800/90 backdrop-blur-xl border-r border-gray-100/50 dark:border-gray-700/60 flex-col shadow-sm dark:shadow-gray-900/20"
       >
         {/* Header */}
-        <div className="px-8 py-8 border-b border-gray-50/80">
+        <div className="px-8 py-8 border-b border-gray-50/80 dark:border-gray-700/50">
           <div className="flex items-center justify-between mb-8">
             <div>
-              <h1 className="text-2xl font-bold text-gray-900 tracking-tight">Messages</h1>
-              <p className="text-sm text-gray-500 mt-1 font-medium">{filteredConversations.length} conversations</p>
+              <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100 tracking-tight">Messages</h1>
+              <p className="text-sm text-gray-500 dark:text-gray-400 mt-1 font-medium">
+                {filteredConversations.length} conversations
+              </p>
             </div>
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Button
                 variant="ghost"
                 size="icon"
-                className="w-11 h-11 rounded-xl bg-gray-50/80 hover:bg-gray-100/80 text-gray-600 hover:text-gray-900 transition-all duration-200 shadow-sm hover:shadow-md"
+                className="w-11 h-11 rounded-xl bg-gray-50/80 dark:bg-gray-700/80 hover:bg-gray-100/80 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100 transition-all duration-200 shadow-sm hover:shadow-md"
               >
                 <Plus className="w-5 h-5" />
               </Button>
@@ -424,12 +308,12 @@ export function ChatPage() {
 
           {/* Search */}
           <div className="relative group">
-            <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4 transition-colors duration-200 group-focus-within:text-gray-600" />
+            <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-500 w-4 h-4 transition-colors duration-200 group-focus-within:text-gray-600 dark:group-focus-within:text-gray-400" />
             <Input
               placeholder="Search conversations..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="pl-12 pr-12 h-12 bg-gray-50/80 border-0 focus:bg-white/90 focus:ring-2 focus:ring-blue-500/20 focus:border-transparent rounded-2xl transition-all duration-300 text-gray-900 placeholder:text-gray-400 shadow-sm hover:shadow-md focus:shadow-lg backdrop-blur-sm"
+              className="pl-12 pr-12 h-12 bg-gray-50/80 dark:bg-gray-700/80 border-0 focus:bg-white/90 dark:focus:bg-gray-700 focus:ring-2 focus:ring-blue-500/20 dark:focus:ring-blue-500/30 focus:border-transparent rounded-2xl transition-all duration-300 text-gray-900 dark:text-gray-100 placeholder:text-gray-400 dark:placeholder:text-gray-500 shadow-sm hover:shadow-md focus:shadow-lg backdrop-blur-sm"
             />
             <AnimatePresence>
               {searchQuery && (
@@ -443,7 +327,7 @@ export function ChatPage() {
                     variant="ghost"
                     size="icon"
                     onClick={() => setSearchQuery("")}
-                    className="absolute right-2 top-1/2 transform -translate-y-1/2 w-8 h-8 text-gray-400 hover:text-gray-600 hover:bg-gray-100/80 rounded-lg transition-all duration-200"
+                    className="absolute right-2 top-1/2 transform -translate-y-1/2 w-8 h-8 text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-400 hover:bg-gray-100/80 dark:hover:bg-gray-700/80 rounded-lg transition-all duration-200"
                   >
                     <X className="w-4 h-4" />
                   </Button>
@@ -468,15 +352,15 @@ export function ChatPage() {
                 onClick={() => setSelectedChat(conversation.id)}
                 className={`mx-2 mb-3 p-5 cursor-pointer rounded-2xl transition-all duration-300 group relative ${
                   selectedChat === conversation.id
-                    ? "bg-blue-50/80 shadow-md border border-blue-100/50"
-                    : "hover:bg-gray-50/80 hover:shadow-sm"
+                    ? "bg-blue-50/80 dark:bg-blue-900/30 shadow-md border border-blue-100/50 dark:border-blue-800/50"
+                    : "hover:bg-gray-50/80 dark:hover:bg-gray-700/80 hover:shadow-sm"
                 }`}
               >
                 <div className="flex items-start gap-4">
                   <div className="relative flex-shrink-0">
                     <Avatar className="w-14 h-14 ring-2 ring-white shadow-sm">
                       <AvatarImage src={conversation.avatar || undefined} />
-                      <AvatarFallback className="bg-gradient-to-br from-blue-100 to-blue-50 text-[#010411] font-bold text-sm">
+                      <AvatarFallback className="bg-gradient-to-br from-blue-100 to-blue-50 dark:from-blue-900/50 dark:to-blue-800/50 text-[#010411] dark:text-blue-100 font-bold text-sm">
                         {getInitials(conversation.name)}
                       </AvatarFallback>
                     </Avatar>
@@ -484,18 +368,20 @@ export function ChatPage() {
                       <motion.div
                         initial={{ scale: 0 }}
                         animate={{ scale: 1 }}
-                        className="absolute -bottom-1 -right-0 w-4 h-4 bg-green-500 border-3 border-white rounded-full shadow-sm"
+                        className="absolute -bottom-1 -right-0 w-4 h-4 bg-green-500 border-3 border-white dark:border-gray-800 rounded-full shadow-sm"
                       />
                     )}
                   </div>
 
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center justify-between mb-2">
-                      <h3 className="font-semibold text-gray-900 truncate text-base tracking-tight">
+                      <h3 className="font-semibold text-gray-900 dark:text-gray-100 truncate text-base tracking-tight">
                         {conversation.name}
                       </h3>
                       <div className="flex items-center gap-3">
-                        <span className="text-sm text-gray-500 font-medium">{conversation.timestamp}</span>
+                        <span className="text-sm text-gray-500 dark:text-gray-400 font-medium">
+                          {conversation.timestamp}
+                        </span>
                         {conversation.unreadCount > 0 && (
                           <motion.div
                             initial={{ scale: 0 }}
@@ -507,10 +393,12 @@ export function ChatPage() {
                         )}
                       </div>
                     </div>
-                    <p className="text-sm text-gray-500 truncate mb-3 font-medium leading-relaxed">
+                    <p className="text-sm text-gray-500 dark:text-gray-400 truncate mb-3 font-medium leading-relaxed">
                       {conversation.subtitle}
                     </p>
-                    <p className="text-sm text-gray-700 truncate leading-relaxed">{conversation.lastMessage}</p>
+                    <p className="text-sm text-gray-700 dark:text-gray-300 truncate leading-relaxed">
+                      {conversation.lastMessage}
+                    </p>
                   </div>
                 </div>
                 {/* Conversation Options */}
@@ -519,19 +407,22 @@ export function ChatPage() {
                     <Button
                       variant="ghost"
                       size="icon"
-                      className="absolute top-3 right-3 w-8 h-8 rounded-full text-gray-400 hover:text-gray-600 hover:bg-gray-100/80 opacity-0 group-hover:opacity-100 transition-opacity duration-200"
-                      onClick={(e) => e.stopPropagation()} // Prevent selecting conversation when opening menu
+                      className="absolute top-3 right-3 w-8 h-8 rounded-full text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 hover:bg-gray-100/80 dark:hover:bg-gray-700/80 opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+                      onClick={(e) => e.stopPropagation()}
                     >
                       <MoreHorizontal className="w-4 h-4" />
                     </Button>
                   </DropdownMenuTrigger>
-                  <DropdownMenuContent align="end" className="w-40">
-                    <DropdownMenuItem onClick={() => handleEditConversation(conversation.id)}>
+                  <DropdownMenuContent align="end" className="w-40 dark:bg-gray-800 dark:border-gray-700">
+                    <DropdownMenuItem
+                      onClick={() => handleEditConversation(conversation.id)}
+                      className="dark:hover:bg-gray-700"
+                    >
                       <Edit className="mr-2 h-4 w-4" /> Edit
                     </DropdownMenuItem>
                     <DropdownMenuItem
                       onClick={() => handleDeleteConversation(conversation.id)}
-                      className="text-red-600 focus:text-red-600"
+                      className="text-red-600 focus:text-red-600 dark:text-red-400 dark:focus:text-red-400 dark:hover:bg-gray-700"
                     >
                       <Trash2 className="mr-2 h-4 w-4" /> Delete
                     </DropdownMenuItem>
@@ -543,11 +434,15 @@ export function ChatPage() {
 
           {searchQuery && filteredConversations.length === 0 && (
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="p-12 text-center">
-              <div className="w-16 h-16 bg-gray-100/80 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-sm">
-                <Search className="w-8 h-8 text-gray-400" />
+              <div className="w-16 h-16 bg-gray-100/80 dark:bg-gray-700/80 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-sm">
+                <Search className="w-8 h-8 text-gray-400 dark:text-gray-500" />
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3 tracking-tight">No conversations found</h3>
-              <p className="text-gray-500 text-sm leading-relaxed">Try searching with different keywords</p>
+              <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-3 tracking-tight">
+                No conversations found
+              </h3>
+              <p className="text-gray-500 dark:text-gray-400 text-sm leading-relaxed">
+                Try searching with different keywords
+              </p>
             </motion.div>
           )}
         </div>
@@ -561,17 +456,17 @@ export function ChatPage() {
             animate={{ x: 0, opacity: 1 }}
             exit={{ x: -400, opacity: 0 }}
             transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="lg:hidden absolute inset-0 bg-white/95 backdrop-blur-xl z-50 flex flex-col"
+            className="lg:hidden absolute inset-0 bg-white/95 dark:bg-gray-800/95 backdrop-blur-xl z-50 flex flex-col"
           >
-            <div className="px-6 py-8 border-b border-gray-50">
-              <h1 className="text-2xl font-bold text-gray-900 mb-6 tracking-tight">Messages</h1>
+            <div className="px-6 py-8 border-b border-gray-50 dark:border-gray-700">
+              <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-6 tracking-tight">Messages</h1>
               <div className="relative group">
-                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4 group-focus-within:text-gray-600 transition-colors duration-200" />
+                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-500 w-4 h-4 group-focus-within:text-gray-600 dark:group-focus-within:text-gray-400 transition-colors duration-200" />
                 <Input
                   placeholder="Search conversations..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-12 pr-12 h-12 bg-gray-50 border-0 focus:bg-white focus:ring-2 focus:ring-blue-500/20 rounded-2xl transition-all duration-300"
+                  className="pl-12 pr-12 h-12 bg-gray-50 dark:bg-gray-700/80 border-0 focus:bg-white dark:focus:bg-gray-700 focus:ring-2 focus:ring-blue-500/20 dark:focus:ring-blue-500/30 rounded-2xl transition-all duration-300 text-gray-900 dark:text-gray-100 placeholder:text-gray-400 dark:placeholder:text-gray-500"
                 />
                 <AnimatePresence>
                   {searchQuery && (
@@ -584,7 +479,7 @@ export function ChatPage() {
                         variant="ghost"
                         size="icon"
                         onClick={() => setSearchQuery("")}
-                        className="absolute right-2 top-1/2 transform -translate-y-1/2 w-8 h-8 text-gray-400 hover:text-gray-600 rounded-lg"
+                        className="absolute right-2 top-1/2 transform -translate-y-1/2 w-8 h-8 text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-400 rounded-lg"
                       >
                         <X className="w-4 h-4" />
                       </Button>
@@ -606,28 +501,36 @@ export function ChatPage() {
                     setSelectedChat(conversation.id)
                     setShowChatList(false)
                   }}
-                  className="mx-2 mb-3 p-5 rounded-2xl hover:bg-gray-50 transition-all duration-200 relative"
+                  className="mx-2 mb-3 p-5 rounded-2xl hover:bg-gray-50 dark:hover:bg-gray-700/80 transition-all duration-200 relative"
                 >
                   <div className="flex items-start gap-2">
                     <div className="relative">
                       <Avatar className="w-14 h-14 ring-2 ring-white shadow-sm">
                         <AvatarImage src={conversation.avatar || undefined} />
-                        <AvatarFallback className="bg-gradient-to-br from-blue-100 to-blue-50 text-blue-700 font-semibold">
+                        <AvatarFallback className="bg-gradient-to-br from-blue-100 to-blue-50 dark:from-blue-900/50 dark:to-blue-800/50 text-[#010411] dark:text-blue-100 font-semibold">
                           {getInitials(conversation.name)}
                         </AvatarFallback>
                       </Avatar>
                       {conversation.isOnline && (
-                        <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 border-3 border-white rounded-full" />
+                        <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 border-3 border-white dark:border-gray-800 rounded-full" />
                       )}
                     </div>
 
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center justify-between mb-2">
-                        <h3 className="font-semibold text-gray-900 tracking-tight">{conversation.name}</h3>
-                        <span className="text-sm text-gray-500 font-medium">{conversation.timestamp}</span>
+                        <h3 className="font-semibold text-gray-900 dark:text-gray-100 tracking-tight">
+                          {conversation.name}
+                        </h3>
+                        <span className="text-sm text-gray-500 dark:text-gray-400 font-medium">
+                          {conversation.timestamp}
+                        </span>
                       </div>
-                      <p className="text-sm text-gray-500 truncate mb-2 font-medium">{conversation.subtitle}</p>
-                      <p className="text-sm text-gray-700 truncate">{conversation.lastMessage}</p>
+                      <p className="text-sm text-gray-500 dark:text-gray-400 truncate mb-2 font-medium">
+                        {conversation.subtitle}
+                      </p>
+                      <p className="text-sm text-gray-700 dark:text-gray-300 truncate">
+                        {conversation.lastMessage}
+                      </p>
                     </div>
                   </div>
                   {/* Conversation Options (Mobile) */}
@@ -636,19 +539,22 @@ export function ChatPage() {
                       <Button
                         variant="ghost"
                         size="icon"
-                        className="absolute top-3 right-3 w-8 h-8 rounded-full text-gray-400 hover:text-gray-600 hover:bg-gray-100/80"
+                        className="absolute top-3 right-3 w-8 h-8 rounded-full text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 hover:bg-gray-100/80 dark:hover:bg-gray-700/80"
                         onClick={(e) => e.stopPropagation()}
                       >
                         <MoreHorizontal className="w-4 h-4" />
                       </Button>
                     </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end" className="w-40">
-                      <DropdownMenuItem onClick={() => handleEditConversation(conversation.id)}>
+                    <DropdownMenuContent align="end" className="w-40 dark:bg-gray-800 dark:border-gray-700">
+                      <DropdownMenuItem
+                        onClick={() => handleEditConversation(conversation.id)}
+                        className="dark:hover:bg-gray-700"
+                      >
                         <Edit className="mr-2 h-4 w-4" /> Edit
                       </DropdownMenuItem>
                       <DropdownMenuItem
                         onClick={() => handleDeleteConversation(conversation.id)}
-                        className="text-red-600 focus:text-red-600"
+                        className="text-red-600 focus:text-red-600 dark:text-red-400 dark:focus:text-red-400 dark:hover:bg-gray-700"
                       >
                         <Trash2 className="mr-2 h-4 w-4" /> Delete
                       </DropdownMenuItem>
@@ -662,7 +568,7 @@ export function ChatPage() {
       </AnimatePresence>
 
       {/* Chat Area */}
-      <div className="flex-1 flex flex-col bg-white/90 backdrop-blur-xl">
+      <div className="flex-1 flex flex-col bg-white/90 dark:bg-gray-800/90 backdrop-blur-xl">
         {selectedConversation ? (
           <>
             {/* Chat Header */}
@@ -670,7 +576,7 @@ export function ChatPage() {
               initial={{ y: -20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.4, delay: 0.1 }}
-              className="bg-white/80 backdrop-blur-xl border-b border-gray-50/80 px-6 py-5 shadow-sm"
+              className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl border-b border-gray-50/80 dark:border-gray-700/50 px-6 py-5 shadow-sm"
             >
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-4">
@@ -678,16 +584,20 @@ export function ChatPage() {
                     <Button
                       variant="ghost"
                       size="icon"
-                      className="lg:hidden w-10 h-10 rounded-xl hover:bg-gray-100/80 transition-all duration-200"
+                      className="lg:hidden w-10 h-10 rounded-xl hover:bg-gray-100/80 dark:hover:bg-gray-700/80 transition-all duration-200"
                       onClick={() => setShowChatList(true)}
                     >
-                      <ArrowLeft className="w-5 h-5" />
+                      <ArrowLeft className="w-5 h-5 text-gray-600 dark:text-gray-400" />
                     </Button>
                   </motion.div>
 
                   <div className="text-center lg:text-left">
-                    <h2 className="font-bold text-gray-900 text-lg tracking-tight">{selectedConversation.name}</h2>
-                    <p className="text-sm text-gray-500 font-medium mt-1">{selectedConversation.subtitle}</p>
+                    <h2 className="font-bold text-gray-900 dark:text-gray-100 text-lg tracking-tight">
+                      {selectedConversation.name}
+                    </h2>
+                    <p className="text-sm text-gray-500 dark:text-gray-400 font-medium mt-1">
+                      {selectedConversation.subtitle}
+                    </p>
                   </div>
                 </div>
 
@@ -696,7 +606,7 @@ export function ChatPage() {
                     <Button
                       variant="ghost"
                       size="icon"
-                      className="w-11 h-11 rounded-xl text-gray-500 hover:text-blue-600 hover:bg-blue-50/80 transition-all duration-200"
+                      className="w-11 h-11 rounded-xl text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50/80 dark:hover:bg-blue-900/30 transition-all duration-200"
                     >
                       <Phone className="w-5 h-5" />
                     </Button>
@@ -705,7 +615,7 @@ export function ChatPage() {
                     <Button
                       variant="ghost"
                       size="icon"
-                      className="w-11 h-11 rounded-xl text-gray-500 hover:text-blue-600 hover:bg-blue-50/80 transition-all duration-200"
+                      className="w-11 h-11 rounded-xl text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50/80 dark:hover:bg-blue-900/30 transition-all duration-200"
                     >
                       <Video className="w-5 h-5" />
                     </Button>
@@ -731,7 +641,7 @@ export function ChatPage() {
                           value={editingMessageContent}
                           onChange={(e) => setEditingMessageContent(e.target.value)}
                           onKeyPress={(e) => e.key === "Enter" && handleSaveEdit(msg.id)}
-                          className="px-4 py-2 rounded-xl border-2 border-blue-500 focus:ring-2 focus:ring-blue-500/20"
+                          className="px-4 py-2 rounded-xl border-2 border-blue-500 focus:ring-2 focus:ring-blue-500/20 dark:bg-gray-700 dark:border-blue-400 dark:focus:ring-blue-400/30"
                         />
                         <Button onClick={() => handleSaveEdit(msg.id)} size="sm">
                           Save
@@ -746,7 +656,7 @@ export function ChatPage() {
                         className={`px-5 py-3 rounded-3xl shadow-sm ${
                           msg.isOwn
                             ? "bg-blue-500 text-white rounded-br-lg shadow-blue-500/20"
-                            : "bg-gray-100/80 text-gray-900 rounded-bl-lg backdrop-blur-sm"
+                            : "bg-gray-100/80 dark:bg-gray-700/80 text-gray-900 dark:text-gray-100 rounded-bl-lg backdrop-blur-sm"
                         }`}
                       >
                         <p className="text-sm leading-relaxed whitespace-pre-wrap font-medium">{msg.content}</p>
@@ -754,12 +664,12 @@ export function ChatPage() {
                     )}
 
                     <div className={`flex items-center gap-2 mt-2 px-2 ${msg.isOwn ? "justify-end" : "justify-start"}`}>
-                      <span className="text-xs text-gray-500 font-medium">{msg.timestamp}</span>
+                      <span className="text-xs text-gray-500 dark:text-gray-400 font-medium">{msg.timestamp}</span>
                       {msg.isOwn && (
-                        <div className="text-gray-400">
+                        <div className="text-gray-400 dark:text-gray-500">
                           {msg.status === "sent" && <Check className="w-3 h-3" />}
                           {msg.status === "delivered" && <CheckCheck className="w-3 h-3" />}
-                          {msg.status === "read" && <CheckCheck className="w-3 h-3 text-blue-500" />}
+                          {msg.status === "read" && <CheckCheck className="w-3 h-3 text-blue-500 dark:text-blue-400" />}
                         </div>
                       )}
                     </div>
@@ -769,7 +679,7 @@ export function ChatPage() {
                         <Button
                           variant="ghost"
                           size="icon"
-                          className={`absolute top-1/2 -translate-y-1/2 w-8 h-8 rounded-full text-gray-400 hover:text-gray-600 hover:bg-gray-100/80 transition-opacity duration-200 ${
+                          className={`absolute top-1/2 -translate-y-1/2 w-8 h-8 rounded-full text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 hover:bg-gray-100/80 dark:hover:bg-gray-700/80 transition-opacity duration-200 ${
                             msg.isOwn
                               ? "-left-10 opacity-0 group-hover:opacity-100"
                               : "-right-10 opacity-0 group-hover:opacity-100"
@@ -778,13 +688,19 @@ export function ChatPage() {
                           <MoreHorizontal className="w-4 h-4" />
                         </Button>
                       </DropdownMenuTrigger>
-                      <DropdownMenuContent align={msg.isOwn ? "end" : "start"} className="w-40">
-                        <DropdownMenuItem onClick={() => handleEditMessage(msg.id, msg.content)}>
+                      <DropdownMenuContent
+                        align={msg.isOwn ? "end" : "start"}
+                        className="w-40 dark:bg-gray-800 dark:border-gray-700"
+                      >
+                        <DropdownMenuItem
+                          onClick={() => handleEditMessage(msg.id, msg.content)}
+                          className="dark:hover:bg-gray-700"
+                        >
                           <Edit className="mr-2 h-4 w-4" /> Edit
                         </DropdownMenuItem>
                         <DropdownMenuItem
                           onClick={() => handleDeleteMessage(msg.id)}
-                          className="text-red-600 focus:text-red-600 hover:bg-blue-500"
+                          className="text-red-600 focus:text-red-600 dark:text-red-400 dark:focus:text-red-400 dark:hover:bg-gray-700"
                         >
                           <Trash2 className="mr-2 h-4 w-4" /> Delete
                         </DropdownMenuItem>
@@ -801,21 +717,19 @@ export function ChatPage() {
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.4, delay: 0.2 }}
-              className="bg-white/80 backdrop-blur-xl border-t border-gray-50/80 px-6 py-6 shadow-sm"
+              className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl border-t border-gray-50/80 dark:border-gray-700/50 px-6 py-6 shadow-sm"
             >
               <div className="flex items-center gap-3">
-                {" "}
-                {/* Adjusted gap */}
                 <div className="flex-1 relative">
                   <Input
                     value={messageInput}
                     onChange={(e) => setMessageInput(e.target.value)}
                     placeholder="Message..."
-                    className="bg-gray-50/80 border-0 rounded-3xl px-6 py-4 h-12 focus:ring-2 focus:ring-blue-500/20 focus:bg-white/90 transition-all duration-300 text-gray-900 placeholder:text-gray-400 shadow-sm hover:shadow-md focus:shadow-lg backdrop-blur-sm"
+                    className="bg-gray-50/80 dark:bg-gray-700/80 border-0 rounded-3xl px-6 py-4 h-12 focus:ring-2 focus:ring-blue-500/20 dark:focus:ring-blue-400/30 focus:bg-white/90 dark:focus:bg-gray-700 transition-all duration-300 text-gray-900 dark:text-gray-100 placeholder:text-gray-400 dark:placeholder:text-gray-500 shadow-sm hover:shadow-md focus:shadow-lg backdrop-blur-sm"
                     onKeyPress={(e) => e.key === "Enter" && handleSendMessage()}
                   />
                 </div>
-                {/* Emoji Button - Always Visible */}
+                {/* Emoji Button */}
                 <div className="relative">
                   <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                     <Button
@@ -824,8 +738,8 @@ export function ChatPage() {
                       onClick={() => setShowEmojiPicker(!showEmojiPicker)}
                       className={`w-12 h-12 rounded-full transition-all duration-200 ${
                         showEmojiPicker
-                          ? "text-blue-600 bg-blue-50/80"
-                          : "text-gray-500 hover:text-gray-700 hover:bg-gray-100/80"
+                          ? "text-blue-600 dark:text-blue-400 bg-blue-50/80 dark:bg-blue-900/30"
+                          : "text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 hover:bg-gray-100/80 dark:hover:bg-gray-700/80"
                       }`}
                     >
                       <Smile className="w-5 h-5" />
@@ -840,16 +754,16 @@ export function ChatPage() {
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: 10, scale: 0.95 }}
                         transition={{ duration: 0.2 }}
-                        className="emoji-picker-container absolute bottom-16 right-0 w-80 bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-gray-100/50 p-4 z-50"
+                        className="emoji-picker-container absolute bottom-16 right-0 w-80 bg-white/95 dark:bg-gray-800/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-gray-100/50 dark:border-gray-700/50 p-4 z-50"
                       >
                         <div className="flex flex-col gap-4">
                           <div className="flex items-center justify-between">
-                            <h3 className="font-semibold text-gray-900">Emojis</h3>
+                            <h3 className="font-semibold text-gray-900 dark:text-gray-100">Emojis</h3>
                             <Button
                               variant="ghost"
                               size="icon"
                               onClick={() => setShowEmojiPicker(false)}
-                              className="w-8 h-8 rounded-lg text-gray-400 hover:text-gray-600"
+                              className="w-8 h-8 rounded-lg text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300"
                             >
                               <X className="w-4 h-4" />
                             </Button>
@@ -858,7 +772,9 @@ export function ChatPage() {
                           <div className="max-h-64 overflow-y-auto">
                             {Object.entries(emojiCategories).map(([category, emojis]) => (
                               <div key={category} className="mb-4">
-                                <h4 className="text-xs font-medium text-gray-500 mb-2 px-1">{category}</h4>
+                                <h4 className="text-xs font-medium text-gray-500 dark:text-gray-400 mb-2 px-1">
+                                  {category}
+                                </h4>
                                 <div className="grid grid-cols-8 gap-1">
                                   {emojis.map((emoji, index) => (
                                     <motion.button
@@ -866,7 +782,7 @@ export function ChatPage() {
                                       whileHover={{ scale: 1.2 }}
                                       whileTap={{ scale: 0.9 }}
                                       onClick={() => insertEmoji(emoji)}
-                                      className="w-8 h-8 flex items-center justify-center text-lg hover:bg-gray-100/80 rounded-lg transition-all duration-150"
+                                      className="w-8 h-8 flex items-center justify-center text-lg hover:bg-gray-100/80 dark:hover:bg-gray-700/80 rounded-lg transition-all duration-150"
                                     >
                                       {emoji}
                                     </motion.button>
@@ -880,7 +796,7 @@ export function ChatPage() {
                     )}
                   </AnimatePresence>
                 </div>
-                {/* Send Button - Enabled when messageInput is not empty */}
+                {/* Send Button */}
                 <motion.div
                   key="send-button"
                   initial={{ scale: 0, opacity: 0 }}
@@ -892,8 +808,8 @@ export function ChatPage() {
                 >
                   <Button
                     onClick={handleSendMessage}
-                    disabled={!messageInput.trim()} // Disable if input is empty
-                    className="bg-blue-500 hover:bg-blue-600 text-white rounded-full w-12 h-12 p-0 shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                    disabled={!messageInput.trim()}
+                    className="bg-blue-500 hover:bg-blue-600 dark:hover:bg-blue-600 text-white rounded-full w-12 h-12 p-0 shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     <Send className="w-5 h-5" />
                   </Button>
@@ -909,11 +825,13 @@ export function ChatPage() {
             className="flex-1 flex items-center justify-center"
           >
             <div className="text-center max-w-sm">
-              <div className="w-20 h-20 bg-gray-100/80 rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-sm">
-                <Send className="w-10 h-10 text-gray-400" />
+              <div className="w-20 h-20 bg-gray-100/80 dark:bg-gray-700/80 rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-sm">
+                <Send className="w-10 h-10 text-gray-400 dark:text-gray-500" />
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3 tracking-tight">Select a conversation</h3>
-              <p className="text-gray-500 leading-relaxed font-medium">
+              <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-3 tracking-tight">
+                Select a conversation
+              </h3>
+              <p className="text-gray-500 dark:text-gray-400 leading-relaxed font-medium">
                 Choose a conversation to start messaging with campus runners
               </p>
             </div>
@@ -923,12 +841,3 @@ export function ChatPage() {
     </div>
   )
 }
-
-
-
-
-
-
-
-
-

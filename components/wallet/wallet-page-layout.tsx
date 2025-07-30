@@ -15,7 +15,7 @@ interface WalletPageLayoutProps {
 
 export function WalletPageLayout({ title, description, children, backLink = "/wallet" }: WalletPageLayoutProps) {
   return (
-    <div className="min-h-screen bg-[#EEF6FF] flex flex-col pb-20 lg:pb-0">
+    <div className="min-h-screen dark:text-gray-300 bg-[#EEF6FF] dark:bg-primary-foreground flex flex-col pb-20 lg:pb-0">
       <div className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -32,7 +32,7 @@ export function WalletPageLayout({ title, description, children, backLink = "/wa
             </div>
             <span className="text-sm font-medium">Back to Wallet</span>
           </Link>
-          <h1 className="text-4xl font-bold text-[#010411] mt-6 tracking-tight">{title}</h1>
+          <h1 className="text-4xl font-bold dark:text-gray-500 text-[#010411] mt-6 tracking-tight">{title}</h1>
           <p className="text-gray-600 mt-2 text-lg">{description}</p>
         </motion.div>
 

@@ -61,16 +61,6 @@ export function Hero() {
 
   return (
     <section className="relative min-h-[600px] w-[95%] rounded-md mx-auto my-8 flex items-center justify-center overflow-hidden">
-      {/* Theme Toggle Button */}
-      <button
-        onClick={toggleTheme}
-        className="absolute top-4 right-4 z-50 p-2 rounded-full bg-black/20 dark:bg-white/20 contrast:bg-yellow-500/50 backdrop-blur-md border border-white/30 dark:border-black/30 contrast:border-yellow-400 text-white dark:text-black contrast:text-yellow-400 hover:scale-110 transition-all duration-200 shadow-lg"
-        aria-label="Toggle theme"
-      >
-        {theme === "dark" && <Moon size={20} />}
-        {theme === "light" && <Sun size={20} />}
-        {theme === "contrast" && <Contrast size={20} />}
-      </button>
 
       {/* Background Image */}
       <div className="absolute inset-0 z-0">

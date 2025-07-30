@@ -10,6 +10,7 @@ import { WalletCard } from "@/components/wallet/wallet-card"
 import { TransactionItem } from "@/components/wallet/transaction-item"
 import { mockWalletBalances, mockTransactions, userWalletId } from "@/lib/wallet-data"
 import { WalletPageLayout } from "@/components/wallet/wallet-page-layout" // Import the new layout component
+import { Footer } from "@/components/sections/footer";
 import Link from "next/link"
 
 export default function WalletOverviewPage() {
@@ -27,10 +28,11 @@ export default function WalletOverviewPage() {
     .slice(0, 3) // Show only 3 recent transactions
 
   return (
+    <div>
     <WalletPageLayout
       title="My Wallet"
       description="Manage your funds, top-up, transfer, and withdraw with ease."
-      backLink="/" // Assuming the main wallet page links back to home or dashboard
+      backLink="/" // Link to go back to the home page
     >
      
 
@@ -57,7 +59,7 @@ export default function WalletOverviewPage() {
 
       {/* Wallet ID */}
       <motion.div
-        className="bg-white/70 backdrop-blur-xl border border-gray-100/50 p-7 rounded-3xl shadow-lg mb-10"
+        className="bg-white/70 dark:bg-primary-foreground backdrop-blur-xl border border-gray-100/50 p-7 rounded-3xl shadow-lg mb-10"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.4, type: "spring", stiffness: 100, damping: 15 }}
@@ -69,7 +71,7 @@ export default function WalletOverviewPage() {
             type="text"
             value={userWalletId}
             readOnly
-            className="flex-1 dark:bg-red-700 bg-gray-50/80 border-2 border-gray-100 rounded-xl px-5 py-3.5 text-gray-800 font-mono text-base focus:ring-2 focus:ring-[#1657FB]/20 focus:border-[#1657FB] transition-all duration-300"
+            className="flex-1 bg-gray-50/80 border-2 border-gray-100 rounded-xl px-5 py-3.5 text-gray-800 font-mono text-base focus:ring-2 focus:ring-[#1657FB]/20 focus:border-[#1657FB] transition-all duration-300"
           />
           <Button
             onClick={handleCopyWalletId}
@@ -109,5 +111,7 @@ export default function WalletOverviewPage() {
         </div>
       </motion.div>
     </WalletPageLayout>
+    <Footer />
+    </div> 
   )
 }

@@ -86,7 +86,7 @@ export function TransactionItem({ transaction }: TransactionItemProps) {
 
   return (
     <motion.div
-      className="flex items-center justify-between p-5 rounded-2xl bg-white/70 backdrop-blur-xl shadow-sm border border-gray-100/50 hover:shadow-md transition-all duration-200"
+      className="flex items-center justify-between p-5 rounded-2xl dark:bg-primary-foreground bg-white/70 backdrop-blur-xl shadow-sm border border-gray-100/50 hover:shadow-md transition-all duration-200"
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}
@@ -97,7 +97,7 @@ export function TransactionItem({ transaction }: TransactionItemProps) {
           <Icon className={`w-5 h-5 ${iconColorClass}`} />
         </div>
         <div>
-          <h4 className="font-semibold text-gray-900 text-base">{transaction.title}</h4>
+          <h4 className="font-semibold text-gray-300 text-base">{transaction.title}</h4>
           <p className="text-sm text-gray-600 mt-1">{transaction.description || transaction.date}</p>
         </div>
       </div>

@@ -70,7 +70,7 @@ function BottomNav() {
               href={href}
               className={clsx(
                 "flex flex-col items-center gap-1 p-2 transition-colors",
-                "text-muted-foreground hover:text-foreground",
+                "text-muted-foreground hover:text-primary dark:hover:text-white dark:active:text-white dark:focus:text-white focus:text-primary ",
                 activeClass
               )}
             >
@@ -94,7 +94,7 @@ function TopNav() {
             <Link
               href={href}
               className={clsx(
-                "flex items-center gap-2 transition-colors font-medium text-muted-foreground hover:text-foreground",
+                "flex items-center gap-2 transition-colors font-medium text-muted-foreground hover:text-primary dark:hover:text-white dark:active:text-white dark:focus:text-white focus:text-primary",
                 activeClass
               )}
             >
