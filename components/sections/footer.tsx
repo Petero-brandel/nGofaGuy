@@ -84,7 +84,7 @@ export function Footer() {
           className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-y-10 gap-x-8 mb-10"
         >
           {/* Brand Section */}
-          <motion.div variants={item} className="lg:col-span-2 flex flex-col items-center lg:items-start text-center lg:text-left">
+          <motion.div variants={item} className="lg:col-span-2 flex flex-col items-left lg:items-start text-left lg:text-left">
             <Link href="/" className="flex items-center space-x-2 group mb-4">
               <Image
                 src="/logo-blue-white.svg"
@@ -100,7 +100,7 @@ export function Footer() {
               <span className="text-white font-medium"> Built for students, by students.</span>
             </p>
             {/* Social Links */}
-            <div className="flex gap-3 justify-center lg:justify-start">
+            <div className="flex gap-3 justify-left lg:justify-start">
               {socialLinks.map((social, index) => (
                 <motion.a
                   key={social.label}
