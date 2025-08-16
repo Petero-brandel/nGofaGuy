@@ -45,8 +45,8 @@ const footerLinks = [
 
 const socialLinks = [
   { icon: Facebook, url: "#", label: "Facebook" },
-  { icon: Twitter, url: "#", label: "Twitter" },
-  { icon: Instagram, url: "#", label: "Instagram" },
+  { icon: Twitter, url: "https://x.com/GofaGuyNG?t=uZpH3dnOnXgrGUngH7KZCg&s=09", label: "Twitter" },
+  { icon: Instagram, url: "https://www.instagram.com/gofaguyng?igsh=MXZtOXR2ZHRmMGVvYw==", label: "Instagram" },
   { icon: Linkedin, url: "#", label: "LinkedIn" },
 ]
 
