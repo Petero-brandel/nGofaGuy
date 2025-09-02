@@ -1,63 +1,26 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { useState, useEffect } from "react";
-import { Search, Sun, Moon, Contrast } from "lucide-react";
+import { useState } from "react";
+import { Search } from "lucide-react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 
 export function Hero() {
   const [activeTab, setActiveTab] = useState("Find runners");
-  const [theme, setTheme] = useState<"light" | "dark" | "contrast">("dark");
 
-  useEffect(() => {
-    // Apply theme class to document
-    document.documentElement.className = theme;
-  }, [theme]);
-
-  const toggleTheme = () => {
-    setTheme((prev) => {
-      if (prev === "dark") return "light";
-      if (prev === "light") return "contrast";
-      return "dark";
-    });
+  // Default theme styles (dark)
+  const currentTheme = {
+    bgImage: "brightness(0.2) saturate(1.2) blur(1.5px)",
+    overlay:
+      "linear-gradient(120deg, rgba(1,4,17,0.95) 0%, rgba(0,0,5,0.65) 60%, rgba(0,0,0,0.7) 100%)",
+    textColor: "text-white",
+    tabBg: "bg-white/10",
+    tabBorder: "border-white/20",
+    inputBg: "bg-white/10",
+    inputBorder: "border-white/20",
+    placeholder: "placeholder-[#e0e0e0]",
   };
-
-  // Theme-specific styles
-  const themeStyles = {
-    dark: {
-      bgImage: "brightness(0.2) saturate(1.2) blur(1.5px)",
-      overlay: "linear-gradient(120deg, rgba(1,4,17,0.95) 0%, rgba(0,0,5,0.65) 60%, rgba(0,0,0,0.7) 100%)",
-      textColor: "text-white",
-      tabBg: "bg-white/10",
-      tabBorder: "border-white/20",
-      inputBg: "bg-white/10",
-      inputBorder: "border-white/20",
-      placeholder: "placeholder-[#e0e0e0]",
-    },
-    light: {
-      bgImage: "brightness(0.7) saturate(1.1) blur(0.5px)",
-      overlay: "linear-gradient(120deg, rgba(255,255,255,0.9) 0%, rgba(245,245,255,0.8) 60%, rgba(240,240,255,0.85) 100%)",
-      textColor: "text-gray-900",
-      tabBg: "bg-black/10",
-      tabBorder: "border-black/20",
-      inputBg: "bg-black/10",
-      inputBorder: "border-black/20",
-      placeholder: "placeholder-[#555555]",
-    },
-    contrast: {
-      bgImage: "brightness(0.3) saturate(1.5) contrast(1.5)",
-      overlay: "linear-gradient(120deg, rgba(0,0,0,0.95) 0%, rgba(10,10,20,0.9) 60%, rgba(20,20,30,0.9) 100%)",
-      textColor: "text-white",
-      tabBg: "bg-white/20",
-      tabBorder: "border-yellow-400/50",
-      inputBg: "bg-white/20",
-      inputBorder: "border-yellow-400/50",
-      placeholder: "placeholder-[#ffff00]",
-    },
-  };
-
-  const currentTheme = themeStyles[theme];
 
   return (
     <section className="relative min-h-[600px] w-[95%] rounded-md mx-auto my-8 flex items-center justify-center overflow-hidden">
@@ -74,7 +37,7 @@ export function Hero() {
         />
       </div>
 
-      {/* Modern Glassmorphism Overlay */}
+      {/* Overlay */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <div
           className="w-full h-full"
@@ -82,25 +45,26 @@ export function Hero() {
             background: currentTheme.overlay,
             backdropFilter: "blur(10px) saturate(1.3) contrast(1.2)",
             WebkitBackdropFilter: "blur(10px) saturate(1.3) contrast(1.2)",
-            mixBlendMode: theme === "light" ? "normal" : "multiply",
+            mixBlendMode: "multiply",
           }}
         />
       </div>
 
       {/* Animated Effects */}
       <motion.div
-        className={`absolute -top-32 -left-32 w-[300px] h-[300px] rounded-full ${
-          theme === "contrast" ? "bg-[#ffff00]/30" : "bg-[#1FF3A5]/30"
-        } blur-3xl z-0`}
+        className="absolute -top-32 -left-32 w-[300px] h-[300px] rounded-full bg-[#1FF3A5]/30 blur-3xl z-0"
         animate={{ scale: [1, 1.05, 1], opacity: [0.5, 0.7, 0.5] }}
         transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
       />
       <motion.div
-        className={`absolute bottom-0 right-0 w-[200px] h-[200px] rounded-full ${
-          theme === "contrast" ? "bg-[#ff0000]/30" : "bg-[#1657FB]/30"
-        } blur-2xl z-0`}
+        className="absolute bottom-0 right-0 w-[200px] h-[200px] rounded-full bg-[#1657FB]/30 blur-2xl z-0"
         animate={{ scale: [1, 1.03, 1], opacity: [0.4, 0.6, 0.4] }}
-        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+        transition={{
+          duration: 12,
+          repeat: Infinity,
+          ease: "easeInOut",
+          delay: 2,
+        }}
       />
 
       {/* Content */}
@@ -170,9 +134,7 @@ export function Hero() {
               placeholder="Search by task type, skills, or location"
               className={`flex-1 px-6 py-4 ${currentTheme.textColor} ${currentTheme.placeholder} bg-transparent focus:outline-none text-lg`}
             />
-            <Button className={`bg-[#1657FB] hover:bg-[#0033CD] my-auto mr-4 text-white px-8 py-4 rounded-full flex items-center gap-2 text-lg font-medium shadow-lg transition-all duration-200 ${
-              theme === "contrast" ? "ring-2 ring-yellow-400" : ""
-            }`}>
+            <Button className="bg-[#1657FB] hover:bg-[#0033CD] my-auto mr-4 text-white px-8 py-4 rounded-full flex items-center gap-2 text-lg font-medium shadow-lg transition-all duration-200">
               <Search className="w-5 h-5" />
               Search
             </Button>

@@ -77,14 +77,14 @@ export default function ProfilePage() {
     setMounted(true);
   }, []);
 
-  // Now we can safely check for loading state
-  if (!mounted) {
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50/30 via-white to-indigo-50/20 flex items-center justify-center">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#1657FB]"></div>
-      </div>
-    );
-  }
+  // // Now we can safely check for loading state
+  // if (!mounted) {
+  //   return (
+  //     // <div className="min-h-screen bg-gradient-to-br from-blue-50/30 via-white to-indigo-50/20 flex items-center justify-center">
+  //     //   <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#1657FB]"></div>
+  //     // </div>
+  //   );
+  // }
 
   // User profile data
   const userProfile = {
