@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { motion } from "framer-motion"
 import { Copy, Check, Plus, Repeat2, ArrowDownCircle } from "lucide-react"
+import { Header } from "@/components/explore-page/exp-header"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { toast } from "sonner"
@@ -29,10 +30,11 @@ export default function WalletOverviewPage() {
 
   return (
     <div>
+    <Header />
     <WalletPageLayout
       title="My Wallet"
       description="Manage your funds, top-up, transfer, and withdraw with ease."
-      backLink="/" // Link to go back to the home page
+      backLink="/explore" // Link to go back to the home page
     >
      
 

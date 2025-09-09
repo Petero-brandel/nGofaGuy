@@ -37,6 +37,7 @@ import { useToast } from "@/hooks/use-toast";
 import { Modal } from "@/components/ui/modal";
 import { ToastContainer } from "@/components/ui/toast";
 import { Switch } from "@/components/ui/switch";
+import { Header } from "@/components/explore-page/exp-header"
 
 export default function ProfilePage() {
   // All hooks must be called unconditionally at the top
@@ -256,6 +257,7 @@ export default function ProfilePage() {
   };
 
   return (
+    
     <div
       className={`min-h-screen transition-all duration-500 ${
         resolvedTheme === "dark"
@@ -263,6 +265,7 @@ export default function ProfilePage() {
           : "bg-gradient-to-br from-blue-50/30 via-white to-indigo-50/20"
       }`}
     >
+        <Header />
       {/* Toast Container */}
       <ToastContainer toasts={toasts} onRemove={(id) => {}} />
 
@@ -276,7 +279,7 @@ export default function ProfilePage() {
       >
         <div className="max-w-4xl mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <Link href="/">
+            <Link href="/explore">
               <button
                 className={`p-2 rounded-xl transition-colors ${
                   resolvedTheme === "dark"
