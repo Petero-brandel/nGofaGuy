@@ -13,7 +13,7 @@ const jobs = [
     company: "GofaGuy FUTMINNA",
     location: "FUTMINNA",
     salary: "₦1,500 - ₦3,500 per campaign",
-    logo: "/gofaguy-logo.png",
+    logo: "/dp.jpg",
     color: "bg-blue-200",
   },
   {
@@ -22,7 +22,7 @@ const jobs = [
     company: "GofaGuy FUTMINNA",
     location: "FUTMINNA",
     salary: "₦6,000 - ₦15,000 per project",
-    logo: "/gofaguy-logo.png",
+    logo: "/dp.jpg",
     color: "bg-indigo-100",
   },
   {
@@ -31,7 +31,7 @@ const jobs = [
     company: "GofaGuy FUTMINNA",
     location: "FUTMINNA",
     salary: "₦3,000 - ₦8,000 per run",
-    logo: "/gofaguy-logo.png",
+    logo: "/dp.jpg",
     color: "bg-gray-100",
   },
   {
@@ -40,7 +40,7 @@ const jobs = [
     company: "GofaGuy FUTMINNA",
     location: "FUTMINNA",
     salary: "₦5,000 - ₦15,000 per session",
-    logo: "/gofaguy-logo.png",
+    logo: "/dp.jpg",
     color: "bg-pink-100",
   },
   {
@@ -49,7 +49,7 @@ const jobs = [
     company: "GofaGuy FUTMINNA",
     location: "FUTMINNA",
     salary: "₦3,000 - ₦8,000 per project",
-    logo: "/gofaguy-logo.png",
+    logo: "/dp.jpg",
     color: "bg-blue-100",
   },
   // Event & Campus Management
@@ -59,7 +59,7 @@ const jobs = [
     company: "GofaGuy FUTMINNA",
     location: "FUTMINNA",
     salary: "₦7,000 - ₦15,000 per event",
-    logo: "/gofaguy-logo.png",
+    logo: "/dp.jpg",
     color: "bg-purple-100",
   },
   {
@@ -68,7 +68,7 @@ const jobs = [
     company: "GofaGuy FUTMINNA",
     location: "FUTMINNA",
     salary: "₦5,000 - ₦12,000 per event",
-    logo: "/gofaguy-logo.png",
+    logo: "/dp.jpg",
     color: "bg-pink-200",
   },
   {
@@ -77,7 +77,7 @@ const jobs = [
     company: "GofaGuy FUTMINNA",
     location: "FUTMINNA",
     salary: "₦6,000 - ₦12,000 per campaign",
-    logo: "/gofaguy-logo.png",
+    logo: "/dp.jpg",
     color: "bg-teal-100",
   },
   {
@@ -86,7 +86,7 @@ const jobs = [
     company: "GofaGuy FUTMINNA",
     location: "FUTMINNA",
     salary: "₦5,000 - ₦12,000 per session",
-    logo: "/gofaguy-logo.png",
+    logo: "/dp.jpg",
     color: "bg-indigo-200",
   },
   // Logistics & High-Demand Campus Services
@@ -96,7 +96,7 @@ const jobs = [
     company: "GofaGuy FUTMINNA",
     location: "FUTMINNA Campus",
     salary: "₦2,000 - ₦5,000 per delivery",
-    logo: "/gofaguy-logo.png",
+    logo: "/dp.jpg",
     color: "bg-orange-100",
   },
   {
@@ -105,7 +105,7 @@ const jobs = [
     company: "GofaGuy FUTMINNA",
     location: "FUTMINNA",
     salary: "₦1,500 - ₦4,000 per task",
-    logo: "/gofaguy-logo.png",
+    logo: "/dp.jpg",
     color: "bg-red-100",
   },
   {
@@ -114,7 +114,7 @@ const jobs = [
     company: "GofaGuy FUTMINNA",
     location: "FUTMINNA",
     salary: "₦3,500 - ₦10,000 per document",
-    logo: "/gofaguy-logo.png",
+    logo: "/dp.jpg",
     color: "bg-yellow-100",
   },
   
