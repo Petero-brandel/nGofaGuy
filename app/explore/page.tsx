@@ -25,7 +25,7 @@ export default function HomePage() {
     <div className="min-h-screen bg-[#eef6ff]">
       <div className="mx-auto bg-white min-h-screen">
         <Header />
-        <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <main className="max-w-7xl mt-8 mx-auto px-4 sm:px-6 lg:px-8">
           <HeroSection />
           <RecommendedJobs />
 
