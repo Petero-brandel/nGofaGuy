@@ -9,6 +9,7 @@ import {
   MessageSquare,
   ShieldCheck,
   UserRound,
+  Search,
 } from "lucide-react";
 
 import { ThemeProvider } from "@/components/theme-provider";
@@ -52,7 +53,7 @@ export const metadata: Metadata = {
 
 // Shared Nav Items
 const navItems = [
-  { href: "/explore", icon: HomeIcon, label: "Explore", activeClass: "text-blue-600 dark:text-blue-400" },
+  { href: "/explore", icon: Search, label: "Explore", activeClass: "text-blue-600 dark:text-blue-400" },
   { href: "/chat", icon: MessageSquare, label: "Messages", activeClass: "text-blue-600 dark:text-blue-400" },
   { href: "/wallet", icon: ShieldCheck, label: "GoVault", activeClass: "text-blue-600 dark:text-blue-400" },
   { href: "/profile", icon: UserRound, label: "Profile", activeClass: "text-blue-600 dark:text-blue-400" },

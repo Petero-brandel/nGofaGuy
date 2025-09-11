@@ -117,10 +117,8 @@ const jobs = [
     logo: "/dp.jpg",
     color: "bg-yellow-100",
   },
-  
 ]
 
-// Carousel Component
 export function RecommendedJobs() {
   const [activeIndex, setActiveIndex] = useState(0)
   const containerRef = useRef<HTMLDivElement>(null)
@@ -139,6 +137,24 @@ export function RecommendedJobs() {
     if (container) container.addEventListener("scroll", handleScroll)
     return () => container?.removeEventListener("scroll", handleScroll)
   }, [])
+
+  // Autoplay effect
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (!containerRef.current) return
+      const cardWidth = containerRef.current.scrollWidth / jobs.length
+      const nextIndex = (activeIndex + 1) % jobs.length
+
+      containerRef.current.scrollTo({
+        left: cardWidth * nextIndex,
+        behavior: "smooth",
+      })
+
+      setActiveIndex(nextIndex)
+    }, 4000) // autoplay delay (4s)
+
+    return () => clearInterval(interval)
+  }, [activeIndex])
 
   return (
     <motion.section
@@ -168,7 +184,7 @@ export function RecommendedJobs() {
         ))}
       </div>
 
-      {/*Pagination */}
+      {/* Pagination */}
       <div className="flex justify-center mt-6 space-x-2">
         {jobs.map((_, index) => (
           <motion.div
@@ -176,7 +192,7 @@ export function RecommendedJobs() {
             className="h-2 rounded-full cursor-pointer"
             style={{ width: activeIndex === index ? "30px" : "10px" }}
             animate={{
-              backgroundColor: activeIndex === index ? "#2563EB" : "#D1D5DB",
+              backgroundColor: activeIndex === index ? "#1FF3A5" : "#D1D5DB",
             }}
             transition={{ type: "spring", stiffness: 300, damping: 25 }}
             onClick={() => {
@@ -186,6 +202,7 @@ export function RecommendedJobs() {
                 left: cardWidth * index,
                 behavior: "smooth",
               })
+              setActiveIndex(index)
             }}
           />
         ))}

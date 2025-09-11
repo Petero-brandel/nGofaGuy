@@ -20,16 +20,25 @@ interface JobSuggestionsProps {
 export function JobSuggestions({ onSuggestionClick }: JobSuggestionsProps) {
   return (
     <section className="mt-8 md:mt-12 px-4 md:px-0">
-      <h2 className="text-lg font-semibold text-gray-900 mb-4 md:mb-6">Suggested job searches</h2>
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:flex md:flex-wrap gap-2 md:gap-3">
-        {suggestions.map((suggestion, index) => (
+      <h2 className="text-lg font-semibold text-gray-900 mb-4 md:mb-6">
+        Suggested job searches
+      </h2>
+
+      {/* Mobile: horizontal scroll | Desktop: flex wrap */}
+      <div className="flex gap-2 overflow-x-auto scrollbar-hide pb-2 md:flex-wrap md:overflow-visible md:gap-3">
+        {suggestions.map((suggestion) => (
           <button
             key={suggestion}
             onClick={() => onSuggestionClick(suggestion)}
-            className="flex items-center justify-center space-x-1 md:space-x-2 px-2 md:px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-full text-xs md:text-sm font-medium text-gray-700 transition-colors text-center"
+            className="flex items-center justify-center space-x-1 md:space-x-2 px-3 md:px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-full text-xs md:text-sm font-medium text-gray-700 transition-colors whitespace-nowrap"
           >
             <span className="truncate">{suggestion}</span>
-            <svg className="w-3 h-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg
+              className="w-3 h-3 flex-shrink-0"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
