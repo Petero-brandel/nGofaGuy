@@ -1,8 +1,9 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import { JobCard } from "./job-card"
-import { useState, useRef, useEffect } from "react"
+import { motion } from "framer-motion";
+import { JobCard } from "./job-card";
+import Link from "next/link";
+import { useState, useRef, useEffect } from "react";
 
 // Full Jobs Array
 const jobs = [
@@ -117,44 +118,44 @@ const jobs = [
     logo: "/dp.jpg",
     color: "bg-yellow-100",
   },
-]
+];
 
 export function RecommendedJobs() {
-  const [activeIndex, setActiveIndex] = useState(0)
-  const containerRef = useRef<HTMLDivElement>(null)
+  const [activeIndex, setActiveIndex] = useState(0);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   // Scroll listener to update active pagination
   const handleScroll = () => {
-    if (!containerRef.current) return
-    const scrollLeft = containerRef.current.scrollLeft
-    const cardWidth = containerRef.current.scrollWidth / jobs.length
-    const index = Math.round(scrollLeft / cardWidth)
-    setActiveIndex(index)
-  }
+    if (!containerRef.current) return;
+    const scrollLeft = containerRef.current.scrollLeft;
+    const cardWidth = containerRef.current.scrollWidth / jobs.length;
+    const index = Math.round(scrollLeft / cardWidth);
+    setActiveIndex(index);
+  };
 
   useEffect(() => {
-    const container = containerRef.current
-    if (container) container.addEventListener("scroll", handleScroll)
-    return () => container?.removeEventListener("scroll", handleScroll)
-  }, [])
+    const container = containerRef.current;
+    if (container) container.addEventListener("scroll", handleScroll);
+    return () => container?.removeEventListener("scroll", handleScroll);
+  }, []);
 
   // Autoplay effect
   useEffect(() => {
     const interval = setInterval(() => {
-      if (!containerRef.current) return
-      const cardWidth = containerRef.current.scrollWidth / jobs.length
-      const nextIndex = (activeIndex + 1) % jobs.length
+      if (!containerRef.current) return;
+      const cardWidth = containerRef.current.scrollWidth / jobs.length;
+      const nextIndex = (activeIndex + 1) % jobs.length;
 
       containerRef.current.scrollTo({
         left: cardWidth * nextIndex,
         behavior: "smooth",
-      })
+      });
 
-      setActiveIndex(nextIndex)
-    }, 4000) // autoplay delay (4s)
+      setActiveIndex(nextIndex);
+    }, 4000); // autoplay delay (4s)
 
-    return () => clearInterval(interval)
-  }, [activeIndex])
+    return () => clearInterval(interval);
+  }, [activeIndex]);
 
   return (
     <motion.section
@@ -163,9 +164,21 @@ export function RecommendedJobs() {
       transition={{ duration: 0.6, delay: 0.7 }}
       className="mt-8 md:mt-12 px-4 md:px-0"
     >
-      <h2 className="text-xl md:text-2xl font-semibold text-gray-900 mb-4 md:mb-6">
-        Recommended for you
-      </h2>
+      {/* s */}
+      <div>
+        <h2 className="text-xl md:text-2xl font-semibold text-gray-900 mb-4 md:mb-6">
+          Recommended for you
+        </h2>
+
+        {/* 
+        <div>
+          <Link href="/Post-a-task">
+            <button className="bg-primary px-6 py-2 rounded-lg text-white shadow-xl">
+              Post
+            </button>
+          </Link>
+        </div> */}
+      </div>
 
       {/* Carousel */}
       <div
@@ -196,17 +209,17 @@ export function RecommendedJobs() {
             }}
             transition={{ type: "spring", stiffness: 300, damping: 25 }}
             onClick={() => {
-              if (!containerRef.current) return
-              const cardWidth = containerRef.current.scrollWidth / jobs.length
+              if (!containerRef.current) return;
+              const cardWidth = containerRef.current.scrollWidth / jobs.length;
               containerRef.current.scrollTo({
                 left: cardWidth * index,
                 behavior: "smooth",
-              })
-              setActiveIndex(index)
+              });
+              setActiveIndex(index);
             }}
           />
         ))}
       </div>
     </motion.section>
-  )
+  );
 }
