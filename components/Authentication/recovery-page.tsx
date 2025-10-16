@@ -20,7 +20,7 @@ export function RecoveryPage() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-50 px-4">
+    <div className="flex items-center justify-center min-h-screen bg-[url('/bg-blue.jpg')] bg-cover px-4">
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
@@ -113,7 +113,7 @@ export function RecoveryPage() {
               <Button
                 onClick={() => setSubmitted(false)}
                 variant="outline"
-                className="h-11 px-6 border-gray-200 hover:bg-gray-50 rounded-lg text-sm font-medium"
+                className="h-11 px-6 border-gray-200 hover:bg-gray-50 rounded-lg text-sm font-medium hover:text-primary/55"
               >
                 Resend Email
               </Button>

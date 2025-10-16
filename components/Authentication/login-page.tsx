@@ -23,17 +23,17 @@ export function LoginPage() {
     <div className="min-h-screen flex flex-col lg:flex-row">
       {/* Left Side - Welcome & Security Tips */}
       <motion.div
-        initial={{ opacity: 0, x: -40 }}
+        initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.6 }}
+        transition={{ duration: 0.2 }}
         className="relative w-full lg:w-1/2 bg-[url('/bg-blue.jpg')] bg-cover bg-center p-6 sm:p-10 flex flex-col justify-between text-white"
       >
-        <div className="max-w-md mt-10 sm:mt-20 space-y-3">
+        <div className="max-w-md ml-10 sm:mt-20 space-y-3">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.6 }}
-            className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight"
+            className="text-3xl mt-8 mb-10 sm:text-4xl lg:text-5xl font-bold leading-tight"
           >
             Good to see you again!
           </motion.h1>
@@ -50,7 +50,7 @@ export function LoginPage() {
         </div>
 
         {/* Security Tip */}
-        <div className="bg-[#010411]/90 rounded-xl p-4 sm:p-5 mt-10 mb-10 sm:mb-16 max-w-md">
+        <div className="bg-[#010411]/90 ml-10 rounded-xl p-4 sm:p-5 mt-10 mb-10 sm:mb-16 max-w-md">
           <h3 className="text-[#1FF3A5] text-base sm:text-lg font-semibold mb-1">
             #Security Tip
           </h3>
@@ -161,7 +161,7 @@ export function LoginPage() {
               <Button
                 type="button"
                 variant="outline"
-                className="h-11 sm:h-12 border-gray-200 rounded-xl flex items-center justify-center gap-2 text-sm bg-transparent hover:bg-gray-50"
+                className="h-11 sm:h-12 border-gray-200 rounded-xl flex items-center justify-center gap-2 text-sm bg-transparent hover:text-primary hover:bg-gray-50"
               >
                 <svg className="w-5 h-5" viewBox="0 0 24 24">
                   <path
@@ -187,7 +187,7 @@ export function LoginPage() {
               <Button
                 type="button"
                 variant="outline"
-                className="h-11 sm:h-12 border-gray-200 rounded-xl flex items-center justify-center gap-2 text-sm bg-transparent hover:bg-gray-50"
+                className="h-11 sm:h-12 border-gray-200 rounded-xl flex items-center justify-center gap-2 text-sm bg-transparent hover:text-primary/55 hover:bg-gray-50"
               >
                 <svg className="w-5 h-5" fill="#1877F2" viewBox="0 0 24 24">
                   <path d="M24 12.073c0-6.627-5.373-12-12-12S0 5.446 0 12.073c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
