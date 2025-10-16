@@ -28,7 +28,7 @@ export function LoginPage() {
         transition={{ duration: 0.2 }}
         className="relative w-full lg:w-1/2 bg-[url('/bg-blue.jpg')] bg-cover bg-center p-6 sm:p-10 flex flex-col justify-between text-white"
       >
-        <div className="max-w-md ml-10 sm:mt-20 space-y-3">
+        <div className="max-w-md sm:mt-20 space-y-3">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -50,7 +50,7 @@ export function LoginPage() {
         </div>
 
         {/* Security Tip */}
-        <div className="bg-[#010411]/90 ml-10 rounded-xl p-4 sm:p-5 mt-10 mb-10 sm:mb-16 max-w-md">
+        <div className="bg-[#010411]/90 rounded-xl p-4 sm:p-5 mt-10 mb-10 sm:mb-16 max-w-md">
           <h3 className="text-[#1FF3A5] text-base sm:text-lg font-semibold mb-1">
             #Security Tip
           </h3>
