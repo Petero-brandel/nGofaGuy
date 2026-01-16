@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { Search, MapPin, SlidersHorizontal } from "lucide-react"
 
 interface SearchSectionProps {
   searchQuery: string
@@ -16,79 +16,43 @@ export function SearchSection({
   setLocationQuery,
 }: SearchSectionProps) {
   return (
-    <section className="mt-6 px-4 sm:px-6 md:px-0">
-      <div className="bg-white rounded-2xl shadow-lg p-4 flex flex-col sm:flex-row sm:items-center sm:space-x-3 space-y-3 sm:space-y-0 border border-gray-200">
-        {/* Job / Keyword Input */}
-        <div className="flex items-center flex-1 bg-gray-50 rounded-lg px-3 py-2 sm:py-0">
-          <label htmlFor="job-search" className="sr-only">
-            Job title, keyword or company
-          </label>
-          <svg
-            className="w-5 h-5 text-gray-400 mr-2 flex-shrink-0"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-            />
-          </svg>
+    <section className="px-0">
+      <div className="bg-gray-100 dark:bg-white/5 rounded-full p-1.5 flex items-center border border-transparent focus-within:border-brand-primary/30 focus-within:bg-white dark:focus-within:bg-card focus-within:shadow-md transition-all duration-300">
+
+        {/* Job Input */}
+        <div className="flex-1 flex items-center px-4 border-r border-gray-300 dark:border-white/10">
+          <Search className="w-5 h-5 text-gray-400 mr-3" />
           <input
-            id="job-search"
             type="text"
-            placeholder="Job title, keyword or company"
+            placeholder="Start typing to search..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="flex-1 bg-transparent outline-none text-gray-700 placeholder-gray-400 text-sm sm:text-base"
+            className="w-full bg-transparent outline-none text-sm font-medium text-gray-900 dark:text-gray-100 placeholder:text-gray-500"
           />
         </div>
 
-        {/* Location Input */}
-        <div className="flex items-center flex-1 bg-gray-50 rounded-lg px-3 py-2 sm:py-0">
-          <label htmlFor="location-search" className="sr-only">
-            Location
-          </label>
-          <svg
-            className="w-5 h-5 text-gray-400 mr-2 flex-shrink-0"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-            />
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-          </svg>
+        {/* Location Input (Hidden on super small screens) */}
+        <div className="hidden sm:flex flex-1 items-center px-4">
+          <MapPin className="w-5 h-5 text-gray-400 mr-3" />
           <input
-            id="location-search"
             type="text"
-            placeholder="Any location"
+            placeholder="Location..."
             value={locationQuery}
             onChange={(e) => setLocationQuery(e.target.value)}
-            className="flex-1 bg-transparent outline-none text-gray-700 placeholder-gray-400 text-sm sm:text-base"
+            className="w-full bg-transparent outline-none text-sm font-medium text-gray-900 dark:text-gray-100 placeholder:text-gray-500"
           />
         </div>
 
+        {/* Mobile Filter Button */}
+        <button className="sm:hidden p-2.5 mr-1 text-gray-700 dark:text-gray-300 hover:text-[#1657FD] hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-full transition-colors">
+          <SlidersHorizontal className="w-5 h-5" />
+        </button>
+
         {/* Search Button */}
-        <button
-          type="button"
-          className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg py-2 sm:py-0 px-4 transition"
-        >
+        <button className="bg-[#1657FD] hover:bg-blue-700 text-white rounded-full px-6 py-2.5 text-sm font-extrabold tracking-wide transition-transform active:scale-95 shadow-md shadow-blue-500/20">
           Search
         </button>
-      </div>
 
-      {/* Secondary actions */}
-      <div className="text-center mt-4 text-sm text-gray-600">
-        You can also{" "}
-        <button className="font-semibold text-gray-900 hover:underline">Post a job</button> or{" "}
-        <button className="font-semibold text-gray-900 hover:underline">Post your resume</button>
       </div>
     </section>
   )

@@ -5,11 +5,15 @@
 @layer base {
   :root {
     /* GofaGuy NG Brand Colors */
-    --brand-primary: 230 91% 54%; /* #1657FD */
-    --brand-primary-dark: 229 89% 4%; /* #010411 */
-    --brand-secondary: 225 100% 40%; /* #0033CD */
-    --brand-accent: 158 90% 54%; /* #1FF3A5 */
-    
+    --brand-primary: 230 91% 54%;
+    /* #1657FD */
+    --brand-primary-dark: 229 89% 4%;
+    /* #010411 */
+    --brand-secondary: 225 100% 40%;
+    /* #0033CD */
+    --brand-accent: 158 90% 54%;
+    /* #1FF3A5 */
+
 
     /* Light Theme */
     --background: 0 0% 100%;
@@ -95,7 +99,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: 
+    background-image:
       linear-gradient(to right, hsl(var(--brand-primary) / 0.05) 1px, transparent 1px),
       linear-gradient(to bottom, hsl(var(--brand-primary) / 0.05) 1px, transparent 1px);
     background-size: 24px 24px;
@@ -112,11 +116,9 @@
     left: -10rem;
     width: 30rem;
     height: 30rem;
-    background: radial-gradient(
-      circle, 
-      hsl(var(--brand-primary) / 0.15) 0%, 
-      transparent 70%
-    );
+    background: radial-gradient(circle,
+        hsl(var(--brand-primary) / 0.15) 0%,
+        transparent 70%);
     border-radius: 50%;
     filter: blur(4rem);
     pointer-events: none;
@@ -131,11 +133,9 @@
     right: -10rem;
     width: 30rem;
     height: 30rem;
-    background: radial-gradient(
-      circle, 
-      hsl(var(--brand-accent) / 0.15) 0%, 
-      transparent 70%
-    );
+    background: radial-gradient(circle,
+        hsl(var(--brand-accent) / 0.15) 0%,
+        transparent 70%);
     border-radius: 50%;
     filter: blur(4rem);
     pointer-events: none;
@@ -145,9 +145,12 @@
 
   /* Animations */
   @keyframes float {
-    0%, 100% {
+
+    0%,
+    100% {
       transform: translate(0, 0) rotate(0deg);
     }
+
     50% {
       transform: translate(-20px, -20px) rotate(5deg);
     }
@@ -160,9 +163,12 @@
   }
 
   @keyframes pulse-brand {
-    0%, 100% {
+
+    0%,
+    100% {
       opacity: 1;
     }
+
     50% {
       opacity: 0.7;
     }
@@ -173,6 +179,7 @@
       opacity: 0;
       transform: translateY(20px);
     }
+
     to {
       opacity: 1;
       transform: translateY(0);
@@ -200,45 +207,36 @@
 
 /* Hide scrollbar for IE, Edge, Firefox */
 .scrollbar-hide {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
 }
 
 
 @layer components {
+
   /* Buttons */
   .btn-primary {
-    @apply bg-primary text-primary-foreground hover:bg-primary/90 
-           shadow-lg shadow-primary/20 transition-all duration-200 
-           hover:shadow-xl hover:shadow-primary/30 hover:-translate-y-0.5
-           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary;
+    @apply bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/20 transition-all duration-200 hover:shadow-xl hover:shadow-primary/30 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary;
   }
 
   .btn-secondary {
-    @apply bg-secondary text-secondary-foreground hover:bg-secondary/80 
-           border border-primary/20 transition-all duration-200 
-           hover:border-primary/40 hover:shadow-md
-           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary;
+    @apply bg-secondary text-secondary-foreground hover:bg-secondary/80 border border-primary/20 transition-all duration-200 hover:border-primary/40 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary;
   }
 
   /* Cards */
   .card {
-    @apply bg-card/80 backdrop-blur-sm border border-border/50 
-           rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 
-           hover:border-primary/20;
+    @apply bg-card/80 backdrop-blur-sm border border-border/50 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:border-primary/20;
   }
 
   /* Inputs */
   .input {
-    @apply bg-background border border-input rounded-md px-4 py-2 
-           focus:border-primary focus:ring-2 focus:ring-primary/20 
-           transition-all duration-200 placeholder:text-muted-foreground/60;
+    @apply bg-background border border-input rounded-md px-4 py-2 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-200 placeholder:text-muted-foreground/60;
   }
 
   /* Glass effect */
   .glass {
-    @apply bg-white/10 dark:bg-black/10 backdrop-blur-md 
-           border border-white/20 dark:border-white/10 
-           shadow-lg shadow-black/5 dark:shadow-black/20;
+    @apply bg-white/10 dark:bg-black/10 backdrop-blur-md border border-white/20 dark:border-white/10 shadow-lg shadow-black/5 dark:shadow-black/20;
   }
 }

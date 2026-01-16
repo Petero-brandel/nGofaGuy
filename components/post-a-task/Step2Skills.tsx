@@ -94,11 +94,10 @@ export default function Step2Skills({
                   whileTap={{ scale: 0.95 }}
                   onClick={() => handleSkillClick(skill)}
                   disabled={isSelected}
-                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
-                    isSelected
+                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${isSelected
                       ? "bg-[var(--color-surface-elevated)] text-[var(--color-text-muted)] cursor-not-allowed"
                       : "bg-[var(--color-surface-elevated)] border border-[var(--color-border)] text-[var(--color-text-secondary)] hover:border-[var(--color-primary)] hover:text-[var(--color-primary)]"
-                  }`}
+                    }`}
                 >
                   {skill}
                 </motion.button>
@@ -134,11 +133,10 @@ export default function Step2Skills({
             whileTap={{ scale: 0.95 }}
             onClick={onNext}
             disabled={!canProceed}
-            className={`flex items-center gap-2 px-6 py-3 rounded-full font-semibold transition-all ${
-              !canProceed
+            className={`flex items-center gap-2 px-6 py-3 rounded-full font-semibold transition-all ${!canProceed
                 ? "bg-[var(--color-surface-elevated)] text-[var(--color-text-muted)] cursor-not-allowed"
                 : "bg-[var(--color-primary)] hover:shadow-lg hover:shadow-[var(--color-primary)]/30 text-white shadow-md"
-            }`}
+              }`}
           >
             <span>Next step</span>
             <ArrowRight className="w-4 h-4" />

@@ -117,11 +117,10 @@ export default function Step4Payment({
             whileTap={{ scale: 0.95 }}
             onClick={onNext}
             disabled={!canProceed}
-            className={`flex items-center gap-2 px-6 py-3 rounded-full font-semibold transition-all ${
-              !canProceed
+            className={`flex items-center gap-2 px-6 py-3 rounded-full font-semibold transition-all ${!canProceed
                 ? "bg-[var(--color-surface-elevated)] text-[var(--color-text-muted)] cursor-not-allowed"
                 : "bg-[var(--color-primary)] hover:shadow-lg hover:shadow-[var(--color-primary)]/30 text-white shadow-md"
-            }`}
+              }`}
           >
             <span>Next step</span>
             <ArrowRight className="w-4 h-4" />

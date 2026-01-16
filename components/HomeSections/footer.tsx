@@ -81,7 +81,7 @@ export function Footer() {
           whileInView="visible"
           viewport={{ once: true }}
           variants={container}
-          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-y-10 gap-x-8 mb-10"
+          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-y-10 gap-x-8 mb-10"
         >
           {/* Brand Section */}
           <motion.div variants={item} className="lg:col-span-2 flex flex-col items-left lg:items-start text-left lg:text-left">
@@ -156,7 +156,7 @@ export function Footer() {
             <div className="text-gray-500 text-xs sm:text-sm text-center md:text-left">
               © {new Date().getFullYear()} GofaGuy Technologies Ltd. All rights reserved.
             </div>
-          
+
           </div>
         </motion.div>
       </div>

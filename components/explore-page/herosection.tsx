@@ -57,7 +57,7 @@ export function HeroSection() {
   return (
     <section
       aria-live="polite"
-      className="relative w-full max-w-screen-xl mx-auto h-[220px] sm:h-[260px] rounded-2xl px-4 sm:px-6 md:px-10 py-4 overflow-hidden bg-[#0B0F1A] shadow-xl"
+      className="relative w-full max-w-screen-xl mx-auto h-[160px] sm:h-[260px] rounded-2xl px-4 sm:px-6 md:px-10 py-3 sm:py-4 overflow-hidden bg-[#0B0F1A] shadow-xl"
     >
       {/* Soft vignette & shapes */}
       <div className="pointer-events-none absolute inset-0">
@@ -163,10 +163,10 @@ function SlideCopy({
 
   return (
     <div className={`${base} ${variants[state]}`}>
-      <h1 className="text-xl sm:text-2xl md:text-3xl font-extrabold tracking-tight leading-tight mb-1.5 sm:mb-2 text-white/95 line-clamp-2 text-balance">
+      <h1 className="text-lg sm:text-2xl md:text-3xl font-extrabold tracking-tight leading-tight mb-1 sm:mb-2 text-white/95 line-clamp-2 text-balance">
         {title}
       </h1>
-      <p className="text-xs sm:text-sm md:text-base max-w-[36rem] mx-auto text-white/80 px-1.5 sm:px-0 font-medium leading-snug line-clamp-2 text-pretty">
+      <p className="text-xs sm:text-sm md:text-base max-w-[36rem] mx-auto text-white/80 px-1 sm:px-0 font-medium leading-snug line-clamp-2 text-pretty">
         {subtitle}
       </p>
     </div>

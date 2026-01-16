@@ -85,16 +85,14 @@ export default function Step1Description({
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => onFormDataChange({ category: category.id })}
-                className={`p-4 rounded-2xl text-center transition-all ${
-                  isSelected
+                className={`p-4 rounded-2xl text-center transition-all ${isSelected
                     ? "bg-[var(--color-primary)] text-white shadow-lg shadow-[var(--color-primary)]/20"
                     : "bg-[var(--color-surface)] border-2 border-[var(--color-border)] text-[var(--color-text-secondary)] hover:border-[var(--color-primary)]"
-                }`}
+                  }`}
               >
                 <Icon
-                  className={`w-6 h-6 mx-auto mb-2 ${
-                    isSelected ? "text-white" : "text-[var(--color-primary)]"
-                  }`}
+                  className={`w-6 h-6 mx-auto mb-2 ${isSelected ? "text-white" : "text-[var(--color-primary)]"
+                    }`}
                 />
                 <span className="text-xs font-semibold block">
                   {category.label}
@@ -105,7 +103,7 @@ export default function Step1Description({
         </div>
       </div>
 
-     
+
       <div className="relative">
         <div className="relative border-2 border-[var(--color-border-strong)] rounded-3xl p-6 bg-[var(--color-surface)] shadow-lg hover:shadow-xl hover:shadow-[var(--color-primary)]/5 transition-shadow">
           <textarea
@@ -160,11 +158,10 @@ export default function Step1Description({
               whileTap={{ scale: 0.95 }}
               onClick={onNext}
               disabled={!canProceed}
-              className={`flex items-center gap-2 px-6 py-3 rounded-full font-semibold transition-all ${
-                !canProceed
+              className={`flex items-center gap-2 px-6 py-3 rounded-full font-semibold transition-all ${!canProceed
                   ? "bg-[var(--color-surface-elevated)] text-[var(--color-text-muted)] cursor-not-allowed"
                   : "bg-[var(--color-primary)] hover:shadow-lg hover:shadow-[var(--color-primary)]/30 text-white shadow-md"
-              }`}
+                }`}
             >
               <span>Next step</span>
               <ArrowRight className="w-4 h-4" />
@@ -197,13 +194,12 @@ export default function Step1Description({
             )}
           </div>
           <div
-            className={`text-sm font-medium transition-colors ${
-              isAtLimit
+            className={`text-sm font-medium transition-colors ${isAtLimit
                 ? "text-[var(--color-danger)]"
                 : isNearLimit
-                ? "text-[var(--color-warning)]"
-                : "text-[var(--color-text-muted)]"
-            }`}
+                  ? "text-[var(--color-warning)]"
+                  : "text-[var(--color-text-muted)]"
+              }`}
           >
             {formData.description.length} / {maxLength}
           </div>
@@ -215,11 +211,10 @@ export default function Step1Description({
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
-              className={`mt-3 p-3 rounded-xl border ${
-                isAtLimit
+              className={`mt-3 p-3 rounded-xl border ${isAtLimit
                   ? "bg-red-50 border-red-200 text-red-700"
                   : "bg-amber-50 border-amber-200 text-amber-700"
-              }`}
+                }`}
             >
               <div className="flex items-center gap-2 text-sm">
                 <AlertCircle className="w-4 h-4 flex-shrink-0" />

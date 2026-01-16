@@ -67,11 +67,10 @@ export default function Step3Timeline({
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={() => onFormDataChange({ urgency: option.value })}
-                className={`p-4 rounded-xl border-2 transition-all ${
-                  formData.urgency === option.value
+                className={`p-4 rounded-xl border-2 transition-all ${formData.urgency === option.value
                     ? "border-[var(--color-primary)] bg-[var(--color-primary)]/10"
                     : "border-[var(--color-border)] hover:border-[var(--color-border-strong)] bg-[var(--color-surface-elevated)]"
-                }`}
+                  }`}
               >
                 <div className="font-semibold text-[var(--color-text-primary)] mb-1">
                   {option.label}
@@ -100,11 +99,10 @@ export default function Step3Timeline({
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={() => onFormDataChange({ duration: option.value })}
-                className={`p-4 rounded-xl border-2 transition-all text-left ${
-                  formData.duration === option.value
+                className={`p-4 rounded-xl border-2 transition-all text-left ${formData.duration === option.value
                     ? "border-[var(--color-primary)] bg-[var(--color-primary)]/10"
                     : "border-[var(--color-border)] hover:border-[var(--color-border-strong)] bg-[var(--color-surface-elevated)]"
-                }`}
+                  }`}
               >
                 <div className="font-medium text-[var(--color-text-primary)]">
                   {option.label}
@@ -157,11 +155,10 @@ export default function Step3Timeline({
             whileTap={{ scale: 0.95 }}
             onClick={onNext}
             disabled={!canProceed}
-            className={`flex items-center gap-2 px-6 py-3 rounded-full font-semibold transition-all ${
-              !canProceed
+            className={`flex items-center gap-2 px-6 py-3 rounded-full font-semibold transition-all ${!canProceed
                 ? "bg-[var(--color-surface-elevated)] text-[var(--color-text-muted)] cursor-not-allowed"
                 : "bg-[var(--color-primary)] hover:shadow-lg hover:shadow-[var(--color-primary)]/30 text-white shadow-md"
-            }`}
+              }`}
           >
             <span>Next step</span>
             <ArrowRight className="w-4 h-4" />
