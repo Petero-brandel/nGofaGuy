@@ -13,7 +13,6 @@ import {
 } from "lucide-react";
 
 import { ThemeProvider } from "@/components/theme-provider";
-import { AuthProvider } from "@/lib/auth/auth-context";
 import { Toaster } from "sonner";
 import clsx from "clsx";
 
@@ -104,7 +103,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           enableSystem
           disableTransitionOnChange
         >
-          <AuthProvider>
             <main className="min-h-[calc(100vh-4rem)]">{children}</main>
             <Toaster
               position="top-right"
@@ -114,7 +112,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               }}
             />
             <BottomNav />
-          </AuthProvider>
         </ThemeProvider>
       </body>
     </html>

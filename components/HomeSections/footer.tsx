@@ -1,11 +1,14 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin } from "lucide-react"
+import { Share2, Mail, Phone, MapPin } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
 
-const footerLinks = [
+const footerLinks: Array<{
+  title: string
+  links: Array<{ text: string; url: string; icon?: typeof Mail }>
+}> = [
   {
     title: "Company",
     links: [
@@ -44,10 +47,10 @@ const footerLinks = [
 ]
 
 const socialLinks = [
-  { icon: Facebook, url: "#", label: "Facebook" },
-  { icon: Twitter, url: "https://x.com/GofaGuyNG?t=uZpH3dnOnXgrGUngH7KZCg&s=09", label: "Twitter" },
-  { icon: Instagram, url: "https://www.instagram.com/gofaguyng?igsh=MXZtOXR2ZHRmMGVvYw==", label: "Instagram" },
-  { icon: Linkedin, url: "#", label: "LinkedIn" },
+  { icon: Share2, url: "#", label: "Facebook" },
+  { icon: Share2, url: "https://x.com/GofaGuyNG?t=uZpH3dnOnXgrGUngH7KZCg&s=09", label: "Twitter" },
+  { icon: Share2, url: "https://www.instagram.com/gofaguyng?igsh=MXZtOXR2ZHRmMGVvYw==", label: "Instagram" },
+  { icon: Share2, url: "#", label: "LinkedIn" },
 ]
 
 const container = {
@@ -63,7 +66,7 @@ const item = {
   visible: {
     y: 0,
     opacity: 1,
-    transition: { type: "spring", stiffness: 300, damping: 24 },
+    transition: { type: "spring" as const, stiffness: 300, damping: 24 },
   },
 }
 
@@ -120,7 +123,7 @@ export function Footer() {
           </motion.div>
 
           {/* Footer Links */}
-          {footerLinks.map((section, index) => (
+          {footerLinks.map((section) => (
             <motion.div
               key={section.title}
               variants={item}
