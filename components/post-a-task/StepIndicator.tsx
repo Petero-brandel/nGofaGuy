@@ -42,46 +42,42 @@ export default function StepIndicator({
                     }
                   }}
                   disabled={!isCompleted && !isActive}
-                  className={`w-full flex items-start gap-4 p-4 rounded-xl transition-all ${
-                    isActive
+                  className={`w-full flex items-start gap-4 p-4 rounded-xl transition-all ${isActive
                       ? "bg-[var(--color-primary)] text-white shadow-md shadow-[var(--color-primary)]/20"
                       : isCompleted
-                      ? "hover:bg-[var(--color-surface-elevated)] cursor-pointer"
-                      : "opacity-50 cursor-not-allowed"
-                  }`}
+                        ? "hover:bg-[var(--color-surface-elevated)] cursor-pointer"
+                        : "opacity-50 cursor-not-allowed"
+                    }`}
                 >
                   <div
-                    className={`flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm transition-all ${
-                      isActive
+                    className={`flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm transition-all ${isActive
                         ? "bg-white text-[var(--color-primary)] shadow-lg"
                         : isCompleted
-                        ? "bg-[var(--color-accent)] text-white"
-                        : "bg-[var(--color-surface-elevated)] text-[var(--color-text-muted)] border border-[var(--color-border)]"
-                    }`}
+                          ? "bg-[var(--color-accent)] text-white"
+                          : "bg-[var(--color-surface-elevated)] text-[var(--color-text-muted)] border border-[var(--color-border)]"
+                      }`}
                   >
                     {isCompleted ? <Check className="w-5 h-5" /> : step.id}
                   </div>
 
                   <div className="flex-1 text-left">
                     <div
-                      className={`font-semibold mb-0.5 ${
-                        isActive
+                      className={`font-semibold mb-0.5 ${isActive
                           ? "text-white"
                           : isCompleted
-                          ? "text-[var(--color-text-primary)]"
-                          : "text-[var(--color-text-muted)]"
-                      }`}
+                            ? "text-[var(--color-text-primary)]"
+                            : "text-[var(--color-text-muted)]"
+                        }`}
                     >
                       {step.title}
                     </div>
                     <div
-                      className={`text-xs ${
-                        isActive
+                      className={`text-xs ${isActive
                           ? "text-white/80"
                           : isCompleted
-                          ? "text-[var(--color-text-muted)]"
-                          : "text-[var(--color-text-muted)]"
-                      }`}
+                            ? "text-[var(--color-text-muted)]"
+                            : "text-[var(--color-text-muted)]"
+                        }`}
                     >
                       {step.subtitle}
                     </div>

@@ -1,10 +1,9 @@
-"use client";
-
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Search, Bell } from "lucide-react";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import { MobileMenu } from "@/components/explore-page/mobile-menu";
 
 const BRAND_COLOR = "#1657FD";
 
@@ -22,6 +21,7 @@ export function Header() {
   return (
     <header className="sticky top-0 z-30 flex items-center justify-between px-6 py-3 bg-white/80 backdrop-blur border-b border-gray-100 shadow-xl">
       <div className="flex items-center gap-6">
+        <MobileMenu />
         <Link href="/">
           <Image
             src="/android-chrome-192x192.png"
@@ -31,6 +31,7 @@ export function Header() {
             className="rounded-2xl transition-transform duration-200 shadow-sm hover:scale-110"
           />
         </Link>
+
 
         <div className="hidden md:flex items-center bg-gray-50 border border-gray-200 rounded-full px-5 py-2 shadow-sm focus-within:ring-2 focus-within:ring-[#1FF3A5]">
           <Search className="w-5 h-5 mr-2" style={{ color: BRAND_COLOR }} />
@@ -52,11 +53,10 @@ export function Header() {
               <Link
                 key={item.name}
                 href={item.href}
-                className={`flex items-center gap-2 px-5 py-2 rounded-full transition-all duration-150 group ${
-                  active
-                    ? "bg-[#1657FD] text-white font-light shadow-xl"
-                    : "text-black hover:bg-gray-100 hover:text-[#1657FD]"
-                }`}
+                className={`flex items-center gap-2 px-5 py-2 rounded-full transition-all duration-150 group ${active
+                  ? "bg-[#1657FD] text-white font-light shadow-xl"
+                  : "text-black hover:bg-gray-100 hover:text-[#1657FD]"
+                  }`}
               >
                 <span className="hidden lg:inline font-semibold tracking-tight">
                   {item.name}

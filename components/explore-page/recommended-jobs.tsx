@@ -1,225 +1,81 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { JobCard } from "./job-card";
 import Link from "next/link";
 import { useState, useRef, useEffect } from "react";
+import { ArrowRight, Star } from "lucide-react";
 
 // Full Jobs Array
 const jobs = [
-  // Academic & Skill-Based Premium
-  {
-    id: 13,
-    title: "Event Flyer Distribution Across Hostels",
-    company: "GofaGuy FUTMINNA",
-    location: "FUTMINNA",
-    salary: "₦1,500 - ₦3,500 per campaign",
-    logo: "/dp.jpg",
-    color: "bg-blue-200",
-  },
-  {
-    id: 2,
-    title: "Research Paper / Data Collection Assistant",
-    company: "GofaGuy FUTMINNA",
-    location: "FUTMINNA",
-    salary: "₦6,000 - ₦15,000 per project",
-    logo: "/dp.jpg",
-    color: "bg-indigo-100",
-  },
-  {
-    id: 12,
-    title: "Campus to Off-Campus Delivery",
-    company: "GofaGuy FUTMINNA",
-    location: "FUTMINNA",
-    salary: "₦3,000 - ₦8,000 per run",
-    logo: "/dp.jpg",
-    color: "bg-gray-100",
-  },
-  {
-    id: 4,
-    title: "Portfolio Photography & Videography",
-    company: "GofaGuy FUTMINNA",
-    location: "FUTMINNA",
-    salary: "₦5,000 - ₦15,000 per session",
-    logo: "/dp.jpg",
-    color: "bg-pink-100",
-  },
-  {
-    id: 5,
-    title: "Presentation / Slide Design Assistant",
-    company: "GofaGuy FUTMINNA",
-    location: "FUTMINNA",
-    salary: "₦3,000 - ₦8,000 per project",
-    logo: "/dp.jpg",
-    color: "bg-blue-100",
-  },
-  // Event & Campus Management
-  {
-    id: 6,
-    title: "Campus Event Coordinator",
-    company: "GofaGuy FUTMINNA",
-    location: "FUTMINNA",
-    salary: "₦7,000 - ₦15,000 per event",
-    logo: "/dp.jpg",
-    color: "bg-purple-100",
-  },
-  {
-    id: 7,
-    title: "Event Photography / Videography",
-    company: "GofaGuy FUTMINNA",
-    location: "FUTMINNA",
-    salary: "₦5,000 - ₦12,000 per event",
-    logo: "/dp.jpg",
-    color: "bg-pink-200",
-  },
-  {
-    id: 8,
-    title: "Event Marketing & Social Media Coverage",
-    company: "GofaGuy FUTMINNA",
-    location: "FUTMINNA",
-    salary: "₦6,000 - ₦12,000 per campaign",
-    logo: "/dp.jpg",
-    color: "bg-teal-100",
-  },
-  {
-    id: 9,
-    title: "Workshop Facilitation / Training Support",
-    company: "GofaGuy FUTMINNA",
-    location: "FUTMINNA",
-    salary: "₦5,000 - ₦12,000 per session",
-    logo: "/dp.jpg",
-    color: "bg-indigo-200",
-  },
-  // Logistics & High-Demand Campus Services
-  {
-    id: 10,
-    title: "Food Delivery Across Hostels",
-    company: "GofaGuy FUTMINNA",
-    location: "FUTMINNA Campus",
-    salary: "₦2,000 - ₦5,000 per delivery",
-    logo: "/dp.jpg",
-    color: "bg-orange-100",
-  },
-  {
-    id: 11,
-    title: "Inter-Hostel Errands",
-    company: "GofaGuy FUTMINNA",
-    location: "FUTMINNA",
-    salary: "₦1,500 - ₦4,000 per task",
-    logo: "/dp.jpg",
-    color: "bg-red-100",
-  },
-  {
-    id: 3,
-    title: "Proofreading & Academic Editing",
-    company: "GofaGuy FUTMINNA",
-    location: "FUTMINNA",
-    salary: "₦3,500 - ₦10,000 per document",
-    logo: "/dp.jpg",
-    color: "bg-yellow-100",
-  },
+  { id: 13, title: "Flyer Distribution", price: "₦3,500", premium: false },
+  { id: 2, title: "Data Collection Asst.", price: "₦15,000", premium: true },
+  { id: 12, title: "Urgent Campus Delivery", price: "₦3,000", premium: false },
+  { id: 4, title: "Portfolio Photography", price: "₦10,000", premium: true },
 ];
 
 export function RecommendedJobs() {
   const [activeIndex, setActiveIndex] = useState(0);
-  const containerRef = useRef<HTMLDivElement>(null);
 
-  // Scroll listener to update active pagination
-  const handleScroll = () => {
-    if (!containerRef.current) return;
-    const scrollLeft = containerRef.current.scrollLeft;
-    const cardWidth = containerRef.current.scrollWidth / jobs.length;
-    const index = Math.round(scrollLeft / cardWidth);
-    setActiveIndex(index);
-  };
-
-  useEffect(() => {
-    const container = containerRef.current;
-    if (container) container.addEventListener("scroll", handleScroll);
-    return () => container?.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  // Autoplay effect
+  // Simple auto-cycle
   useEffect(() => {
     const interval = setInterval(() => {
-      if (!containerRef.current) return;
-      const cardWidth = containerRef.current.scrollWidth / jobs.length;
-      const nextIndex = (activeIndex + 1) % jobs.length;
-
-      containerRef.current.scrollTo({
-        left: cardWidth * nextIndex,
-        behavior: "smooth",
-      });
-
-      setActiveIndex(nextIndex);
-    }, 4000); // autoplay delay (4s)
-
+      setActiveIndex((prev) => (prev + 1) % jobs.length);
+    }, 3000);
     return () => clearInterval(interval);
-  }, [activeIndex]);
+  }, []);
+
+  const activeJob = jobs[activeIndex];
 
   return (
     <motion.section
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: -10 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay: 0.7 }}
-      className="mt-8 md:mt-12 px-4 md:px-0"
+      className="px-0 md:px-0"
     >
-      {/* s */}
-      <div>
-        <h2 className="text-xl md:text-2xl font-semibold text-gray-900 mb-4 md:mb-6">
-          Recommended for you
-        </h2>
+      {/* Compact Ticker Style Card */}
+      <div className="bg-gradient-to-r from-brand-primary/10 to-brand-accent/10 border border-brand-primary/20 rounded-xl p-3 flex items-center justify-between relative overflow-hidden">
 
-        {/* 
-        <div>
-          <Link href="/Post-a-task">
-            <button className="bg-primary px-6 py-2 rounded-lg text-white shadow-xl">
-              Post
+        {/* Decorative */}
+        <div className="absolute -right-4 -top-4 w-16 h-16 bg-brand-primary/10 rounded-full blur-xl" />
+
+        <div className="flex items-center gap-3 z-10 w-full overflow-hidden">
+          <div className="bg-brand-primary text-white p-1.5 rounded-lg shrink-0">
+            <Star className="w-4 h-4 fill-white" />
+          </div>
+
+          <div className="flex-1 min-w-0 flex flex-col sm:flex-row sm:items-center gap-0 sm:gap-3">
+            <span className="text-[10px] font-bold text-brand-primary uppercase tracking-wider shrink-0">Recommended</span>
+            <motion.div
+              key={activeJob.id}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              className="flex items-center gap-2 truncate"
+            >
+              <span className="font-bold text-gray-900 dark:text-gray-100 text-sm truncate">{activeJob.title}</span>
+              <span className="hidden sm:inline-block w-1 h-1 rounded-full bg-gray-300" />
+              <span className="text-sm font-extrabold text-brand-secondary">{activeJob.price}</span>
+            </motion.div>
+          </div>
+
+          <Link href={`/job/${activeJob.id}`}>
+            <button className="whitespace-nowrap bg-white dark:bg-card hover:bg-gray-50 text-brand-primary text-xs font-bold px-3 py-1.5 rounded-lg border border-brand-primary/20 shadow-sm transition-all hover:shadow-md flex items-center gap-1 z-10">
+              View <ArrowRight className="w-3 h-3" />
             </button>
           </Link>
-        </div> */}
+        </div>
       </div>
 
-      {/* Carousel */}
-      <div
-        ref={containerRef}
-        className="flex gap-4 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-4 scrollbar-hide"
-      >
-        {jobs.map((job, index) => (
-          <motion.div
-            key={job.id}
-            className="flex-shrink-0 w-72 sm:w-80 snap-center cursor-pointer"
-            whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.97 }}
-          >
-            <JobCard job={job} index={index} />
-          </motion.div>
-        ))}
-      </div>
-
-      {/* Pagination */}
-      <div className="flex justify-center mt-6 space-x-2">
-        {jobs.map((_, index) => (
-          <motion.div
-            key={index}
-            className="h-2 rounded-full cursor-pointer"
-            style={{ width: activeIndex === index ? "30px" : "10px" }}
-            animate={{
-              backgroundColor: activeIndex === index ? "#1FF3A5" : "#D1D5DB",
-            }}
-            transition={{ type: "spring", stiffness: 300, damping: 25 }}
-            onClick={() => {
-              if (!containerRef.current) return;
-              const cardWidth = containerRef.current.scrollWidth / jobs.length;
-              containerRef.current.scrollTo({
-                left: cardWidth * index,
-                behavior: "smooth",
-              });
-              setActiveIndex(index);
-            }}
+      {/* Pagination Dots (Optional, minimal) */}
+      <div className="flex justify-center mt-2 gap-1.5">
+        {jobs.map((_, idx) => (
+          <div
+            key={idx}
+            className={`h-1 rounded-full transition-all duration-300 ${idx === activeIndex ? "w-4 bg-brand-primary" : "w-1 bg-gray-300"}`}
           />
         ))}
       </div>
+
     </motion.section>
   );
 }
